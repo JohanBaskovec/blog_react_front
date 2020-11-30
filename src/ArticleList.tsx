@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Article} from "./openapi/models";
 import {DefaultApi} from "./openapi/apis";
 import {ArticleSummary} from "./ArticleSummary";
+import "./ArticleList.scss";
 
 export interface ArticleListProps {
     api: DefaultApi;
@@ -15,7 +16,7 @@ export function ArticleList({api}: ArticleListProps) {
         });
     }, []);
     return (
-        <div>
+        <div className="ArticleList">
             {articles.map((article) => <ArticleSummary key={article.id} article={article}/>)}
         </div>
     )

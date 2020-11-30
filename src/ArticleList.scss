@@ -1,0 +1,6 @@
+@import "variables";
+.ArticleList {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: -$article-summary-margin-bottom;
+}
