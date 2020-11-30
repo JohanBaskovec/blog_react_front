@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleList renders the article list when there are 3 articles 1`] = `
+"<div>
+  <div>
+    <div>title0</div>
+    <div>content0</div>
+  </div>
+  <div>
+    <div>title1</div>
+    <div>content1</div>
+  </div>
+  <div>
+    <div>title2</div>
+    <div>content2</div>
+  </div>
+</div>"
+`;
+
+exports[`ArticleList renders the article list when there are no articles 1`] = `"<div></div>"`;
+
+exports[`ArticleList renders the article list when there is 1 article 1`] = `
+"<div>
+  <div>
+    <div>title</div>
+    <div>content</div>
+  </div>
+</div>"
+`;
