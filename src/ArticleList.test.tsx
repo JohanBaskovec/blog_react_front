@@ -7,6 +7,7 @@ import {act} from "react-dom/test-utils";
 import pretty from "pretty";
 import {ArticleList} from "./ArticleList";
 import {Article} from "./openapi/models";
+import {MemoryRouter} from "react-router-dom";
 
 let container: HTMLDivElement;
 beforeEach(() => {
@@ -31,7 +32,11 @@ describe('ArticleList', () => {
             return of(articles);
         });
         act(() => {
-            render(<ArticleList api={api}/>, container);
+            render(
+                <MemoryRouter initialEntries={['/']}>
+                    <ArticleList api={api}/>
+                </MemoryRouter>
+                , container);
         });
         expect(pretty(container.innerHTML)).toMatchSnapshot();
     });
@@ -49,7 +54,11 @@ describe('ArticleList', () => {
             return of(articles);
         });
         act(() => {
-            render(<ArticleList api={api}/>, container);
+            render(
+                <MemoryRouter initialEntries={['/']}>
+                    <ArticleList api={api}/>
+                </MemoryRouter>
+                , container);
         });
         expect(pretty(container.innerHTML)).toMatchSnapshot();
     });
@@ -77,7 +86,11 @@ describe('ArticleList', () => {
             return of(articles);
         });
         act(() => {
-            render(<ArticleList api={api}/>, container);
+            render(
+                <MemoryRouter initialEntries={['/']}>
+                    <ArticleList api={api}/>
+                </MemoryRouter>
+                , container);
         });
         expect(pretty(container.innerHTML)).toMatchSnapshot();
     });

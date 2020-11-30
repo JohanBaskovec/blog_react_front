@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleFull renders a 'error' message when an error happen during load 1`] = `"<div>An error happened, please try again later.</div>"`;
+
+exports[`ArticleFull renders a 'not found' error when the article doesn't exist 1`] = `"<div>This article doesn't exist.</div>"`;
+
+exports[`ArticleFull renders the article when it exists 1`] = `
+"<div>
+  <div>title</div>
+  <div>content</div>
+</div>"
+`;

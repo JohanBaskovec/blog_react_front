@@ -3,7 +3,7 @@ import './App.css';
 import {DefaultApi} from "./openapi/apis";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {ArticleList} from "./ArticleList";
-import {mockClass} from "./mockClass";
+import {ArticleFull} from "./ArticleFull";
 
 export interface AppProps {
     api?: DefaultApi;
@@ -16,6 +16,9 @@ function App({api}: AppProps) {
         <Router>
             <div className="App">
                 <Switch>
+                    <Route path="/article/:id">
+                        <ArticleFull api={api} />
+                    </Route>
                     <Route path="/">
                         <ArticleList api={api} />
                     </Route>
