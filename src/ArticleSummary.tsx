@@ -5,7 +5,7 @@ import "./ArticleSummary.scss";
 
 export interface ArticleSummaryProps {
     article: Article;
-    style: any;
+    style: React.CSSProperties;
 }
 
 export function ArticleSummary(props: ArticleSummaryProps) {
