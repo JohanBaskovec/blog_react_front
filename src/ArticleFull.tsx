@@ -3,6 +3,7 @@ import {Article} from "./openapi/models";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {ApiError, ApiErrorType} from "./ApiError";
+import {TitleLevel2} from "./TitleLevel2";
 
 export interface ArticleFullProps {
     api: DefaultApi;
@@ -33,11 +34,11 @@ export function ArticleFull({api}: ArticleFullProps) {
         }
     }
     return (
-        <div>
-            <div>
+        <div className="ArticleFull">
+            <TitleLevel2 style={{marginBottom: "1rem"}}>
                 {article?.title}
-            </div>
-            <div>
+            </TitleLevel2>
+            <div className="ArticleFull__content">
                 {article?.content}
             </div>
         </div>
