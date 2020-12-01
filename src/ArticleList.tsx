@@ -15,9 +15,16 @@ export function ArticleList({api}: ArticleListProps) {
             setArticles(articles);
         });
     }, []);
+    const articleSummaryMargin = "8px";
+    const articleSummaryStyle = {
+        "margin-top": articleSummaryMargin,
+        "margin-bottom": articleSummaryMargin
+    };
     return (
         <div className="ArticleList">
-            {articles.map((article) => <ArticleSummary key={article.id} article={article}/>)}
+            {articles.map((article) => <ArticleSummary key={article.id}
+                                                       article={article}
+                                                       style={articleSummaryStyle}/>)}
         </div>
     )
 }
