@@ -1,0 +1,12 @@
+$color: #3270c9;
+.AppLink {
+  transition: all 0.2s;
+  text-decoration: none;
+  color: $color;
+  &:visited {
+    color: $color;
+  }
+  &:hover {
+    color: #7b9ecd;
+  }
+}
