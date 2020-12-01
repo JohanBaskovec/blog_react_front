@@ -17,8 +17,8 @@ export function ArticleList({api}: ArticleListProps) {
     }, []);
     const articleSummaryMargin = "8px";
     const articleSummaryStyle = {
-        "margin-top": articleSummaryMargin,
-        "margin-bottom": articleSummaryMargin
+        marginTop: articleSummaryMargin,
+        marginBottom: articleSummaryMargin
     };
     return (
         <div className="ArticleList">

@@ -1,27 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ArticleList renders the article list when there are 3 articles 1`] = `
-"<div>
-  <div>
+"<div class=\\"ArticleList\\">
+  <div class=\\"ArticleSummary\\" style=\\"margin-top: 8px; margin-bottom: 8px;\\">
     <div><a href=\\"/article/id0\\">title0</a></div>
     <div>content0</div>
   </div>
-  <div>
+  <div class=\\"ArticleSummary\\" style=\\"margin-top: 8px; margin-bottom: 8px;\\">
     <div><a href=\\"/article/id1\\">title1</a></div>
     <div>content1</div>
   </div>
-  <div>
+  <div class=\\"ArticleSummary\\" style=\\"margin-top: 8px; margin-bottom: 8px;\\">
     <div><a href=\\"/article/id2\\">title2</a></div>
     <div>content2</div>
   </div>
 </div>"
 `;
 
-exports[`ArticleList renders the article list when there are no articles 1`] = `"<div></div>"`;
+exports[`ArticleList renders the article list when there are no articles 1`] = `"<div class=\\"ArticleList\\"></div>"`;
 
 exports[`ArticleList renders the article list when there is 1 article 1`] = `
-"<div>
-  <div>
+"<div class=\\"ArticleList\\">
+  <div class=\\"ArticleSummary\\" style=\\"margin-top: 8px; margin-bottom: 8px;\\">
     <div><a href=\\"/article/id\\">title</a></div>
     <div>content</div>
   </div>
