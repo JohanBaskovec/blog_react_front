@@ -4,8 +4,9 @@ import "./Form.scss";
 interface FormProps {
     style?: React.CSSProperties;
     children?: React.ReactNode;
+    name?: string;
 }
 
 export function Form(props: FormProps): JSX.Element {
-    return (<form style={props.style} className="Form">{props.children}</form>)
+    return (<form name={props.name} style={props.style} className="Form">{props.children}</form>)
 }

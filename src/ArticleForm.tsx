@@ -42,10 +42,13 @@ export function ArticleForm({api}: ArticleFormProps) {
     }
 
     const submit = (e: React.MouseEvent<HTMLButtonElement>) => {
+        api.updateArticle({article}).subscribe(() => {
+
+        });
     }
     return (
         <div className="ArticleForm">
-            <Form>
+            <Form name="article-form">
                 <InputFormGroup inputName={'title'}
                                 inputLabel={'Title'}
                                 onValueChange={handleChange}

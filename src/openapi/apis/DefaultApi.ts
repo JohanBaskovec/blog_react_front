@@ -25,6 +25,10 @@ export interface InsertArticleRequest {
     article: Article;
 }
 
+export interface UpdateArticleRequest {
+    article: Article;
+}
+
 /**
  * no description
  */
@@ -65,6 +69,24 @@ export class DefaultApi extends BaseAPI {
         return this.request<Article>({
             path: '/article',
             method: 'POST',
+            headers,
+            body: article,
+        });
+    };
+
+    /**
+     * Update an article
+     */
+    updateArticle = ({ article }: UpdateArticleRequest): Observable<void> => {
+        throwIfNullOrUndefined(article, 'updateArticle');
+
+        const headers: HttpHeaders = {
+            'Content-Type': 'application/json',
+        };
+
+        return this.request<void>({
+            path: '/article',
+            method: 'PUT',
             headers,
             body: article,
         });
