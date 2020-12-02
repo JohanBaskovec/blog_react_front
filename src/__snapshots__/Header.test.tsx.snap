@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header is rendered properly 1`] = `
+<header
+  className="Header"
+  style={
+    Object {
+      "height": "4px",
+    }
+  }
+>
+  <nav
+    className="Header__nav"
+    style={
+      Object {
+        "flexBasis": "79%",
+      }
+    }
+  >
+    <ul
+      className="Header__navList"
+    >
+      <li
+        className="Header__navListElement"
+      >
+        <a
+          className="AppLink AppLink--white"
+          href="/"
+          onClick={[Function]}
+        >
+          Home
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+`;

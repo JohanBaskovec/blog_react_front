@@ -2,13 +2,19 @@ import {Link} from "react-router-dom";
 import React from "react";
 import "./AppLink.scss";
 
+export type AppLinkColor = "white" | "blue";
+
 interface LinkProps {
     to: string;
     children?: React.ReactNode;
+    color?: AppLinkColor;
 }
 
 export function AppLink(props: LinkProps): JSX.Element {
-    return (<Link className="AppLink" to={props.to}>
+    const color = props.color || "blue";
+
+    return (<Link className={`AppLink AppLink--${color}`}
+                  to={props.to}>
         {props.children}
     </Link>)
 }

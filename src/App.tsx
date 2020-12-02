@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {ArticleList} from "./ArticleList";
 import {ArticleFull} from "./ArticleFull";
 import {ArticleForm} from "./ArticleForm";
+import {Header} from "./Header";
 
 export interface AppProps {
     api?: DefaultApi;
@@ -15,10 +16,16 @@ function App({api}: AppProps) {
     if (api == null) {
         api = new DefaultApi();
     }
+    const headerHeight = "3rem";
+    const mainPageContentBasis = "70%";
+    // noinspection CheckTagEmptyBody
     return (
         <Router>
-            <div className="App">
-                <div className="MainPageContent">
+            <div className="App" style={{marginTop: headerHeight}}>
+                <Header style={{height: headerHeight}}
+                        contentWidth={mainPageContentBasis}></Header>
+                <main className="MainPageContent"
+                      style={{flexBasis: mainPageContentBasis}}>
                     <Switch>
                         <Route path="/article/:id/edit">
                             <ArticleForm api={api}/>
@@ -30,7 +37,7 @@ function App({api}: AppProps) {
                             <ArticleList api={api}/>
                         </Route>
                     </Switch>
-                </div>
+                </main>
             </div>
         </Router>
     );
