@@ -2,10 +2,10 @@ import React from "react";
 import TestRenderer from 'react-test-renderer';
 import {fireEvent, render, screen} from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import {Input} from "./Input";
 import {ValueChangeEvent} from "./ValueChangeEvent";
+import {TextArea} from "./TextArea";
 
-describe('Input', () => {
+describe('TextArea', () => {
     it("works", () => {
         let onChangeWorks = false;
         const onChange = (e: React.ChangeEvent) => {
@@ -18,7 +18,7 @@ describe('Input', () => {
             onValueChangeEvent = e;
         }
         const name = 'inputName';
-        const element = <Input name={name} value={value} onChange={onChange} onValueChange={onValueChange}/>;
+        const element = <TextArea name={name} value={value} onChange={onChange} onValueChange={onValueChange}/>;
         render(element);
         const input: HTMLElement = screen.getByRole('textbox');
         const text = 'test';
@@ -31,7 +31,7 @@ describe('Input', () => {
     });
     it("is rendered properly", () => {
         const tree = TestRenderer
-            .create(<Input value='read-only' name='name'/>)
+            .create(<TextArea value='read-only' name='name'/>)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });

@@ -1,5 +1,5 @@
 export class ValueChangeEvent<T> {
-    constructor(private _name: string, private _newValue: T) {
+    constructor(private _name: string, private _value: T) {
 
     }
 
@@ -7,8 +7,8 @@ export class ValueChangeEvent<T> {
         return this._name;
     }
 
-    get newValue(): T {
-        return this._newValue;
+    get value(): T {
+        return this._value;
     }
 }
 

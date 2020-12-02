@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextArea is rendered properly 1`] = `
+<textarea
+  className="TextArea"
+  id="name"
+  onChange={[Function]}
+  value="read-only"
+/>
+`;

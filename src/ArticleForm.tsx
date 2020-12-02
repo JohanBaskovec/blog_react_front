@@ -38,7 +38,7 @@ export function ArticleForm({api}: ArticleFormProps) {
     }
 
     const handleChange = (e: ValueChangeEvent<string>) => {
-        setArticle({...article, [e.name]: e.newValue});
+        setArticle({...article, [e.name]: e.value});
     }
 
     const submit = (e: React.MouseEvent<HTMLButtonElement>) => {
