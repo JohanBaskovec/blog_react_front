@@ -1,0 +1,11 @@
+.FormComponent {
+  border: 1px solid #cecece;
+  transition: all 0.3s;
+  padding: 0.6rem;
+  border-radius: 0;
+  &:focus {
+    outline: 0;
+    border-color: #7b9ecd;
+    background-color: #f0f9ff;
+  }
+}

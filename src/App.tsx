@@ -5,6 +5,7 @@ import {DefaultApi} from "./openapi/apis";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {ArticleList} from "./ArticleList";
 import {ArticleFull} from "./ArticleFull";
+import {ArticleForm} from "./ArticleForm";
 
 export interface AppProps {
     api?: DefaultApi;
@@ -19,6 +20,9 @@ function App({api}: AppProps) {
             <div className="App">
                 <div className="MainPageContent">
                     <Switch>
+                        <Route path="/article/:id/edit">
+                            <ArticleForm api={api}/>
+                        </Route>
                         <Route path="/article/:id">
                             <ArticleFull api={api}/>
                         </Route>

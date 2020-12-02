@@ -1,0 +1,7 @@
+@import "./FormComponent.scss";
+.Input {
+  display: flex;
+  width: 100%;
+
+  @extend .FormComponent;
+}

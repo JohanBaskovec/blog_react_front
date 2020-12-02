@@ -7,6 +7,7 @@ exports[`ArticleFull renders a 'not found' error when the article doesn't exist 
 exports[`ArticleFull renders the article when it exists 1`] = `
 "<div class=\\"ArticleFull\\">
   <h2 class=\\"TitleLevel2\\" style=\\"margin-bottom: 1rem;\\">title</h2>
+  <div class=\\"ArticleFull__editionLink\\"><a class=\\"AppLink\\" href=\\"/article/undefined/edit\\">Edit</a></div>
   <div class=\\"ArticleFull__content\\">content</div>
 </div>"
 `;

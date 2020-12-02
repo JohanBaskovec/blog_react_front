@@ -1,0 +1,6 @@
+@import "./FormComponent.scss";
+.TextArea {
+  display: flex;
+  resize: none;
+  @extend .FormComponent;
+}
