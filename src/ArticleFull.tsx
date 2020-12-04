@@ -1,6 +1,6 @@
 import {DefaultApi} from "./openapi/apis";
 import {Article} from "./openapi/models";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {ApiError, ApiErrorType} from "./ApiError";
 import {TitleLevel2} from "./TitleLevel2";

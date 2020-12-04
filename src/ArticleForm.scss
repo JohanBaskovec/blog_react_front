@@ -1,4 +1,8 @@
 .ArticleForm {
   display: flex;
   flex-grow: 1;
+  flex-direction: column;
+}
+.ArticleForm__buttons-container {
+  margin-bottom: 2rem;
 }

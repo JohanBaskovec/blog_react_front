@@ -10,6 +10,7 @@ import {ApiError} from "./ApiError";
 import {ValueChangeEvent} from "./form/ValueChangeEvent";
 import {Button} from "./form/Button";
 import {FormButtonsContainer} from "./form/FormButtonsContainer";
+import {AppLink} from "./AppLink";
 
 interface ArticleFormParams {
     id: string;
@@ -48,6 +49,9 @@ export function ArticleForm({api}: ArticleFormProps) {
     }
     return (
         <div className="ArticleForm">
+            <div className="ArticleForm__buttons-container">
+                <AppLink to={`/article/${article.id}`}>Retour</AppLink>
+            </div>
             <Form name="article-form">
                 <InputFormGroup inputName={'title'}
                                 inputLabel={'Title'}
