@@ -1,7 +1,7 @@
 import React from "react";
 import {DefaultApi, GetArticleByIdRequest} from "./openapi/apis";
 import {of, throwError} from "rxjs";
-import {mockClass} from "./mockClass";
+import {mockDefaultApi} from "./mockClass";
 import {render, unmountComponentAtNode} from "react-dom";
 import {act} from "react-dom/test-utils";
 import pretty from "pretty";

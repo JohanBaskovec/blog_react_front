@@ -59,14 +59,14 @@ export class DefaultApi extends BaseAPI {
     /**
      * Insert an article
      */
-    insertArticle = ({ article }: InsertArticleRequest): Observable<Article> => {
+    insertArticle = ({ article }: InsertArticleRequest): Observable<void> => {
         throwIfNullOrUndefined(article, 'insertArticle');
 
         const headers: HttpHeaders = {
             'Content-Type': 'application/json',
         };
 
-        return this.request<Article>({
+        return this.request<void>({
             path: '/article',
             method: 'POST',
             headers,

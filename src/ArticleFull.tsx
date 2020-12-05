@@ -35,7 +35,7 @@ export function ArticleFull({api}: ArticleFullProps) {
         }
     }
     return (
-        <div className="ArticleFull">
+        <article className="ArticleFull">
             <TitleLevel2 style={{marginBottom: "1rem"}}>
                 {article?.title}
             </TitleLevel2>
@@ -45,6 +45,6 @@ export function ArticleFull({api}: ArticleFullProps) {
             <div className="ArticleFull__content">
                 {article?.content}
             </div>
-        </div>
+        </article>
     )
 }

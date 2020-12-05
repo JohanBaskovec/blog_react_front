@@ -1,7 +1,7 @@
 import React from "react";
 import {DefaultApi} from "./openapi/apis";
 import {of} from "rxjs";
-import {mockClass} from "./mockClass";
+import {mockDefaultApi} from "./mockClass";
 import {render, unmountComponentAtNode} from "react-dom";
 import {act} from "react-dom/test-utils";
 import pretty from "pretty";
@@ -26,7 +26,7 @@ afterEach(() => {
 
 describe('ArticleList', () => {
     it("renders the article list when there are no articles", () => {
-        const api: DefaultApi = mockClass(new DefaultApi());
+        const api: DefaultApi = mockDefaultApi(new DefaultApi());
         api.getAllArticles = jest.fn(() => {
             const articles: Array<Article> = [];
             return of(articles);
@@ -42,7 +42,7 @@ describe('ArticleList', () => {
     });
 
     it("renders the article list when there is 1 article", () => {
-        const api: DefaultApi = mockClass(new DefaultApi());
+        const api: DefaultApi = mockDefaultApi(new DefaultApi());
         api.getAllArticles = jest.fn(() => {
             const articles: Array<Article> = [
                 {
@@ -64,7 +64,7 @@ describe('ArticleList', () => {
     });
 
     it("renders the article list when there are 3 articles", () => {
-        const api: DefaultApi = mockClass(new DefaultApi());
+        const api: DefaultApi = mockDefaultApi(new DefaultApi());
         api.getAllArticles = jest.fn(() => {
             const articles: Array<Article> = [
                 {

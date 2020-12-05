@@ -1,6 +1,6 @@
 import {DefaultApi} from "./openapi/apis";
 import React, {FormEvent, useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {Redirect, useParams} from "react-router-dom";
 import "./ArticleForm.scss";
 import {Form} from "./form/Form";
 import {InputFormGroup} from "./form/InputFormGroup";
@@ -11,27 +11,48 @@ import {ValueChangeEvent} from "./form/ValueChangeEvent";
 import {Button} from "./form/Button";
 import {FormButtonsContainer} from "./form/FormButtonsContainer";
 import {AppLink} from "./AppLink";
+import {RandomService} from "./RandomService";
 
-interface ArticleFormParams {
-    id: string;
+export enum FormType {
+    edition,
+    creation,
+}
+
+export enum EditionFormState {
+    edition,
+    submitted,
 }
 
 interface ArticleFormProps {
     api: DefaultApi;
+    randomService: RandomService;
+    articleId?: string;
 }
 
-export function ArticleForm({api}: ArticleFormProps) {
-    const {id}: ArticleFormParams = useParams<ArticleFormParams>();
+export function ArticleForm({api, randomService, articleId}: ArticleFormProps) {
+    let type = FormType.edition;
+    if (articleId == null) {
+        type = FormType.creation;
+    }
     const [article, setArticle] = useState<Article | null>(null);
     const [error, setError] = useState<ApiError | null>(null);
+    const [persisted, setPersisted] = useState(false);
 
     useEffect(() => {
-        api.getArticleById({id: id}).subscribe((article) => {
-                setArticle(article);
-            },
-            (error) => {
-                setError(ApiError.fromError(error));
+        if (type === FormType.edition) {
+            api.getArticleById({id: articleId}).subscribe((article) => {
+                    setArticle(article);
+                },
+                (error) => {
+                    setError(ApiError.fromError(error));
+                });
+        } else {
+            setArticle({
+                content: '',
+                title: '',
+                id: randomService.generateUuid(),
             });
+        }
     }, [])
 
     if (article == null) {
@@ -43,14 +64,25 @@ export function ArticleForm({api}: ArticleFormProps) {
     }
 
     const submit = (e: React.MouseEvent<HTMLButtonElement>) => {
-        api.updateArticle({article}).subscribe(() => {
-
-        });
+        if (type === FormType.edition) {
+            api.updateArticle({article}).subscribe(() => {
+            });
+        } else {
+            api.insertArticle({article}).subscribe(() => {
+                setPersisted(true);
+            });
+        }
     }
+    if (persisted) {
+        return <Redirect to={`/article/${article.id}`}/>
+    }
+
     return (
         <div className="ArticleForm">
             <div className="ArticleForm__buttons-container">
-                <AppLink to={`/article/${article.id}`}>Retour</AppLink>
+                <AppLink to={type === FormType.edition ? `/article/${article.id}` : `/`}>
+                    Retour
+                </AppLink>
             </div>
             <Form name="article-form">
                 <InputFormGroup inputName={'title'}

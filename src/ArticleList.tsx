@@ -3,6 +3,7 @@ import {Article} from "./openapi/models";
 import {DefaultApi} from "./openapi/apis";
 import {ArticleSummary} from "./ArticleSummary";
 import "./ArticleList.scss";
+import {AppLink} from "./AppLink";
 
 export interface ArticleListProps {
     api: DefaultApi;
@@ -22,9 +23,14 @@ export function ArticleList({api}: ArticleListProps) {
     };
     return (
         <div className="ArticleList">
-            {articles.map((article) => <ArticleSummary key={article.id}
-                                                       article={article}
-                                                       style={articleSummaryStyle}/>)}
+            <div>
+                <AppLink to="/article/new">New article</AppLink>
+            </div>
+            <div>
+                {articles.map((article) => <ArticleSummary key={article.id}
+                                                           article={article}
+                                                           style={articleSummaryStyle}/>)}
+            </div>
         </div>
     )
 }

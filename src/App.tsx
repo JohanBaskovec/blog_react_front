@@ -7,15 +7,22 @@ import {ArticleList} from "./ArticleList";
 import {ArticleFull} from "./ArticleFull";
 import {ArticleForm} from "./ArticleForm";
 import {Header} from "./Header";
+import {RandomService} from "./RandomService";
+import {ArticleFormRouterWrapper} from "./ArticleFormRouterWrapper";
 
 export interface AppProps {
     api?: DefaultApi;
+    randomService?: RandomService;
 }
 
-function App({api}: AppProps) {
+function App({api, randomService}: AppProps) {
     if (api == null) {
         api = new DefaultApi();
     }
+    if (randomService == null) {
+        randomService = new RandomService();
+    }
+
     const headerHeight = "3rem";
     const mainPageContentBasis = "70%";
     // noinspection CheckTagEmptyBody
@@ -28,7 +35,10 @@ function App({api}: AppProps) {
                       style={{flexBasis: mainPageContentBasis}}>
                     <Switch>
                         <Route path="/article/:id/edit">
-                            <ArticleForm api={api}/>
+                            <ArticleFormRouterWrapper api={api} randomService={randomService}/>
+                        </Route>
+                        <Route path="/article/new">
+                            <ArticleFormRouterWrapper api={api} randomService={randomService}/>
                         </Route>
                         <Route path="/article/:id">
                             <ArticleFull api={api}/>
