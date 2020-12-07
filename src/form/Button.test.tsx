@@ -10,7 +10,7 @@ describe('Button', () => {
         const onClick = () => {
             called = true;
         }
-        const element = <Button onClick={onClick}>Submit</Button>;
+        const element = <Button type="button" onClick={onClick}>Submit</Button>;
         render(element);
         expect(screen.getByRole('button', {name: 'Submit'})).not.toBeNull();
         fireEvent.click(screen.getByText('Submit'));
@@ -21,7 +21,7 @@ describe('Button', () => {
         const onClick = () => {
         }
         const tree = TestRenderer
-            .create(<Button onClick={onClick}>Submit</Button>)
+            .create(<Button type="button" onClick={onClick}>Submit</Button>)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });

@@ -66,7 +66,9 @@ describe('ArticleForm', () => {
             fireEvent.click(submitButton);
         });
 
-        expect(testLocation!.pathname).toBe(`/article/${article.id}`);
+        await waitFor(() => {
+            expect(testLocation!.pathname).toBe(`/article/${article.id}`);
+        });
     });
     it("renders the article form when it exists", async () => {
         const api: DefaultApi = mockDefaultApi(new DefaultApi());
@@ -81,13 +83,15 @@ describe('ArticleForm', () => {
         let formSubmitted = false;
         api.updateArticle = jest.fn(({article}: UpdateArticleRequest) => {
             formSubmitted = true;
-            return of();
+            return of(undefined);
         })
         const randomService: RandomService = mockClass(RandomService);
 
         act(() => {
             render(<MemoryRouter initialEntries={['/article/3']}>
-                <ArticleForm api={api} randomService={randomService} articleId={article.id}/>
+                <ArticleForm api={api}
+                             randomService={randomService}
+                             articleId={article.id}/>
             </MemoryRouter>);
         });
 
@@ -108,6 +112,8 @@ describe('ArticleForm', () => {
 
         const submitButton = screen.getByRole('button', {name: 'Submit'});
         fireEvent.click(submitButton);
-        expect(formSubmitted).toBeTruthy();
+        await waitFor(() => {
+            expect(formSubmitted).toBeTruthy();
+        });
     });
 });

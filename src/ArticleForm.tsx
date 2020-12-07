@@ -1,6 +1,6 @@
 import {DefaultApi} from "./openapi/apis";
-import React, {FormEvent, useEffect, useState} from "react";
-import {Redirect, useParams} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Redirect} from "react-router-dom";
 import "./ArticleForm.scss";
 import {Form} from "./form/Form";
 import {InputFormGroup} from "./form/InputFormGroup";
@@ -12,6 +12,8 @@ import {Button} from "./form/Button";
 import {FormButtonsContainer} from "./form/FormButtonsContainer";
 import {AppLink} from "./AppLink";
 import {RandomService} from "./RandomService";
+import {Formik, FormikHelpers, FormikValues} from "formik";
+import * as Yup from 'yup';
 
 export enum FormType {
     edition,
@@ -40,7 +42,7 @@ export function ArticleForm({api, randomService, articleId}: ArticleFormProps) {
 
     useEffect(() => {
         if (type === FormType.edition) {
-            api.getArticleById({id: articleId}).subscribe((article) => {
+            api.getArticleById({id: articleId!}).subscribe((article) => {
                     setArticle(article);
                 },
                 (error) => {
@@ -59,20 +61,6 @@ export function ArticleForm({api, randomService, articleId}: ArticleFormProps) {
         return (<div>Loading...</div>);
     }
 
-    const handleChange = (e: ValueChangeEvent<string>) => {
-        setArticle({...article, [e.name]: e.value});
-    }
-
-    const submit = (e: React.MouseEvent<HTMLButtonElement>) => {
-        if (type === FormType.edition) {
-            api.updateArticle({article}).subscribe(() => {
-            });
-        } else {
-            api.insertArticle({article}).subscribe(() => {
-                setPersisted(true);
-            });
-        }
-    }
     if (persisted) {
         return <Redirect to={`/article/${article.id}`}/>
     }
@@ -84,22 +72,37 @@ export function ArticleForm({api, randomService, articleId}: ArticleFormProps) {
                     Retour
                 </AppLink>
             </div>
-            <Form name="article-form">
-                <InputFormGroup inputName={'title'}
-                                inputLabel={'Title'}
-                                onValueChange={handleChange}
-                                value={article.title}
-                                style={{marginBottom: "1rem"}}>
-                </InputFormGroup>
-                <TextAreaFormGroup value={article.content}
-                                   onValueChange={handleChange}
-                                   inputName="content"
-                                   style={{marginBottom: "1rem"}}
-                                   inputLabel="Content">
-                </TextAreaFormGroup>
-                <FormButtonsContainer>
-                    <Button onClick={submit}>Submit</Button>
-                </FormButtonsContainer>
-            </Form>
+            <Formik initialValues={article}
+                    validationSchema={Yup.object({
+                        title: Yup.string().required('Required'),
+                        content: Yup.string().required('Required')
+                    })}
+                    onSubmit={(article: Article, {setSubmitting}: FormikHelpers<Article>) => {
+                        if (type === FormType.edition) {
+                            api.updateArticle({article}).subscribe(() => {
+                                setSubmitting(false);
+                            });
+                        } else {
+                            api.insertArticle({article}).subscribe(() => {
+                                setSubmitting(false);
+                                setPersisted(true);
+                            });
+                        }
+                    }
+                    }>
+                <Form name="article-form">
+                    <InputFormGroup inputName={'title'}
+                                    inputLabel={'Title'}
+                                    style={{marginBottom: "1rem"}}>
+                    </InputFormGroup>
+                    <TextAreaFormGroup inputName="content"
+                                       style={{marginBottom: "1rem"}}
+                                       inputLabel="Content">
+                    </TextAreaFormGroup>
+                    <FormButtonsContainer>
+                        <Button type="submit">Submit</Button>
+                    </FormButtonsContainer>
+                </Form>
+            </Formik>
         </div>);
 }

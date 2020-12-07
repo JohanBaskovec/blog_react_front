@@ -1,5 +1,6 @@
 import React from "react";
 import "./Form.scss";
+import * as Formik from "formik";
 
 interface FormProps {
     style?: React.CSSProperties;
@@ -8,5 +9,7 @@ interface FormProps {
 }
 
 export function Form(props: FormProps): JSX.Element {
-    return (<form name={props.name} style={props.style} className="Form">{props.children}</form>)
+    return (<Formik.Form name={props.name}
+                         style={props.style}
+                         className="Form">{props.children}</Formik.Form>)
 }
