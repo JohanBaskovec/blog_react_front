@@ -1,5 +1,6 @@
 import React from "react";
 import "./Button.scss";
+import {useFormikContext} from "formik";
 
 export interface ButtonProps {
     children?: React.ReactNode;
@@ -9,9 +10,11 @@ export interface ButtonProps {
 }
 
 export function Button(props: ButtonProps) {
+    const formikContext = useFormikContext();
     return (
         <button type={props.type}
-                className="Button"
+                disabled={formikContext.isSubmitting}
+                className={`Button ${formikContext.isSubmitting ? 'Button--disabled' : ''}`}
                 onClick={props.onClick}>
             {props.children}
         </button>

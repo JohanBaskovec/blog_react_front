@@ -7,12 +7,11 @@ import {InputFormGroup} from "./form/InputFormGroup";
 import {TextAreaFormGroup} from "./form/TextAreaFormGroup";
 import {Article} from "./openapi/models";
 import {ApiError} from "./ApiError";
-import {ValueChangeEvent} from "./form/ValueChangeEvent";
 import {Button} from "./form/Button";
 import {FormButtonsContainer} from "./form/FormButtonsContainer";
 import {AppLink} from "./AppLink";
 import {RandomService} from "./RandomService";
-import {Formik, FormikHelpers, FormikValues} from "formik";
+import {Formik, FormikHelpers} from "formik";
 import * as Yup from 'yup';
 
 export enum FormType {
@@ -61,7 +60,7 @@ export function ArticleForm({api, randomService, articleId}: ArticleFormProps) {
         return (<div>Loading...</div>);
     }
 
-    if (persisted) {
+    if (type === FormType.creation && persisted) {
         return <Redirect to={`/article/${article.id}`}/>
     }
 
@@ -78,15 +77,23 @@ export function ArticleForm({api, randomService, articleId}: ArticleFormProps) {
                         content: Yup.string().required('Required')
                     })}
                     onSubmit={(article: Article, {setSubmitting}: FormikHelpers<Article>) => {
+                        setPersisted(false);
                         if (type === FormType.edition) {
                             api.updateArticle({article}).subscribe(() => {
-                                setSubmitting(false);
-                            });
+                                    setSubmitting(false);
+                                    setPersisted(true);
+                                },
+                                () => {
+                                    setSubmitting(false);
+                                });
                         } else {
                             api.insertArticle({article}).subscribe(() => {
-                                setSubmitting(false);
-                                setPersisted(true);
-                            });
+                                    setSubmitting(false);
+                                    setPersisted(true);
+                                },
+                                () => {
+                                    setSubmitting(false);
+                                });
                         }
                     }
                     }>
@@ -100,6 +107,7 @@ export function ArticleForm({api, randomService, articleId}: ArticleFormProps) {
                                        inputLabel="Content">
                     </TextAreaFormGroup>
                     <FormButtonsContainer>
+                        {persisted ? (<div className="saved-indicator">Saved</div>) : null}
                         <Button type="submit">Submit</Button>
                     </FormButtonsContainer>
                 </Form>

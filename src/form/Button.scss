@@ -21,3 +21,17 @@
 .Button--primary {
 
 }
+
+.Button--disabled {
+  $color: #c9d2dc;
+  background-color: $color;
+  cursor: default;
+
+  &:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+  &:hover {
+    background-color: $color;
+  }
+}
