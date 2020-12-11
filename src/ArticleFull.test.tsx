@@ -9,6 +9,7 @@ import {Article} from "./openapi/models";
 import {AjaxError} from "rxjs/ajax";
 import {ArticleFull} from "./ArticleFull";
 import {MemoryRouter} from "react-router-dom";
+import {Session, SessionContext} from "./SessionContext";
 
 let container: HTMLDivElement;
 beforeEach(() => {
@@ -26,7 +27,34 @@ afterEach(() => {
 });
 
 describe('ArticleFull', () => {
-    it("renders the article when it exists", () => {
+    it("renders the article when it exists and user is logged in", () => {
+        const api: DefaultApi = mockDefaultApi(new DefaultApi());
+        api.getArticleById = jest.fn(({id}: GetArticleByIdRequest) => {
+            const article: Article = {
+                id: id,
+                title: 'title',
+                content: 'content',
+            }
+            return of(article);
+        });
+        const session: Session = {
+            user: {
+                password: "",
+                username: "",
+            }
+        };
+        act(() => {
+            render(
+                <MemoryRouter initialEntries={['/article/3']}>
+                    <SessionContext.Provider value={session}>
+                        <ArticleFull api={api}/>
+                    </SessionContext.Provider>
+                </MemoryRouter>
+                , container);
+        });
+        expect(pretty(container.innerHTML)).toMatchSnapshot();
+    });
+    it("renders the article when it exists and user is not logged in", () => {
         const api: DefaultApi = mockDefaultApi(new DefaultApi());
         api.getArticleById = jest.fn(({id}: GetArticleByIdRequest) => {
             const article: Article = {

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ArticleList renders the article list when there are 3 articles 1`] = `
+exports[`ArticleList renders the article list when there are 3 articles and user in logged in 1`] = `
 "<div class=\\"ArticleList\\">
   <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/new\\">New article</a></div>
   <div>
@@ -20,14 +20,33 @@ exports[`ArticleList renders the article list when there are 3 articles 1`] = `
 </div>"
 `;
 
-exports[`ArticleList renders the article list when there are no articles 1`] = `
+exports[`ArticleList renders the article list when there are 3 articles and user in logged out 1`] = `
+"<div class=\\"ArticleList\\">
+  <div>
+    <div class=\\"ArticleSummary\\" style=\\"margin-top: 8px; margin-bottom: 8px;\\">
+      <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id0\\">title0</a></div>
+      <div>content0</div>
+    </div>
+    <div class=\\"ArticleSummary\\" style=\\"margin-top: 8px; margin-bottom: 8px;\\">
+      <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id1\\">title1</a></div>
+      <div>content1</div>
+    </div>
+    <div class=\\"ArticleSummary\\" style=\\"margin-top: 8px; margin-bottom: 8px;\\">
+      <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id2\\">title2</a></div>
+      <div>content2</div>
+    </div>
+  </div>
+</div>"
+`;
+
+exports[`ArticleList renders the article list when there are no articles and user is logged in 1`] = `
 "<div class=\\"ArticleList\\">
   <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/new\\">New article</a></div>
   <div></div>
 </div>"
 `;
 
-exports[`ArticleList renders the article list when there is 1 article 1`] = `
+exports[`ArticleList renders the article list when there is 1 article and user is logged in 1`] = `
 "<div class=\\"ArticleList\\">
   <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/new\\">New article</a></div>
   <div>

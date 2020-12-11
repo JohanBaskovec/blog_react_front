@@ -10,9 +10,10 @@ import {fireEvent, render, screen, waitFor} from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import {RandomService} from "./RandomService";
 import {Location, History, LocationState} from "history";
+import {Session, SessionContext} from "./SessionContext";
 
 describe('ArticleForm', () => {
-    it("new article form", async () => {
+    it("new article form when user is logged in", async () => {
         const api: DefaultApi = mockDefaultApi(new DefaultApi());
 
         const article: Article = {
@@ -32,17 +33,26 @@ describe('ArticleForm', () => {
         });
         let testHistory: History<LocationState>;
         let testLocation: Location<LocationState>;
+        const session: Session = {
+            user: {
+                password: "",
+                username: "",
+            }
+        };
         const node = <MemoryRouter initialEntries={['/article/new']}>
-            <ArticleForm api={api} randomService={randomService} articleId={undefined}/>
-            <Route
-                path="*"
-                render={(routeComponentProps: RouteComponentProps<any>) => {
-                    testHistory = routeComponentProps.history;
-                    testLocation = routeComponentProps.location;
-                    return null;
-                }}
-            />
+            <SessionContext.Provider value={session}>
+                <ArticleForm api={api} randomService={randomService} articleId={undefined}/>
+                <Route
+                    path="*"
+                    render={(routeComponentProps: RouteComponentProps<any>) => {
+                        testHistory = routeComponentProps.history;
+                        testLocation = routeComponentProps.location;
+                        return null;
+                    }}
+                />
+            </SessionContext.Provider>
         </MemoryRouter>;
+
 
         act(() => {
             render(node);
@@ -70,7 +80,7 @@ describe('ArticleForm', () => {
             expect(testLocation!.pathname).toBe(`/article/${article.id}`);
         });
     });
-    it("renders the article form when it exists", async () => {
+    it("existing article form when user is logged in", async () => {
         const api: DefaultApi = mockDefaultApi(new DefaultApi());
         const article: Article = {
             id: 'id',
@@ -87,11 +97,19 @@ describe('ArticleForm', () => {
         })
         const randomService: RandomService = mockClass(RandomService);
 
+        const session: Session = {
+            user: {
+                password: "",
+                username: "",
+            }
+        };
         act(() => {
             render(<MemoryRouter initialEntries={['/article/3']}>
-                <ArticleForm api={api}
-                             randomService={randomService}
-                             articleId={article.id}/>
+                <SessionContext.Provider value={session}>
+                    <ArticleForm api={api}
+                                 randomService={randomService}
+                                 articleId={article.id}/>
+                </SessionContext.Provider>
             </MemoryRouter>);
         });
 
@@ -114,6 +132,75 @@ describe('ArticleForm', () => {
         fireEvent.click(submitButton);
         await waitFor(() => {
             expect(formSubmitted).toBeTruthy();
+        });
+    });
+    it("existing article form redirects to article when user is not logged in", async () => {
+        const randomService: RandomService = mockClass(RandomService);
+        const api: DefaultApi = mockDefaultApi(new DefaultApi());
+        const article: Article = {
+            id: 'id',
+            title: 'title',
+            content: 'content',
+        }
+        api.getArticleById = jest.fn(({id}: GetArticleByIdRequest) => {
+            return of(article);
+        });
+
+        const session: Session = {};
+
+        let testHistory: History<LocationState>;
+        let testLocation: Location<LocationState>;
+        const articleId = 'toto';
+        act(() => {
+            render(<MemoryRouter initialEntries={['/article/3']}>
+                <SessionContext.Provider value={session}>
+                    <ArticleForm api={api}
+                                 randomService={randomService}
+                                 articleId={articleId}/>
+                    <Route
+                        path="*"
+                        render={(routeComponentProps: RouteComponentProps<any>) => {
+                            testHistory = routeComponentProps.history;
+                            testLocation = routeComponentProps.location;
+                            return null;
+                        }}
+                    />
+                </SessionContext.Provider>
+            </MemoryRouter>);
+        });
+
+        await waitFor(() => {
+            expect(testLocation!.pathname).toBe(`/article/${articleId}`);
+        });
+    });
+    it("new article form redirects to article when user is not logged in", async () => {
+        const randomService: RandomService = mockClass(RandomService);
+        const api: DefaultApi = mockDefaultApi(new DefaultApi());
+
+        const session: Session = {};
+
+        let testHistory: History<LocationState>;
+        let testLocation: Location<LocationState>;
+        act(() => {
+            render(<MemoryRouter initialEntries={['/article/3']}>
+                <SessionContext.Provider value={session}>
+                    <ArticleForm api={api}
+                                 randomService={randomService}
+                                 />
+                    <Route
+                        path="*"
+                        render={(routeComponentProps: RouteComponentProps<any>) => {
+                            testHistory = routeComponentProps.history;
+                            testLocation = routeComponentProps.location;
+                            return null;
+                        }}
+                    />
+                </SessionContext.Provider>
+            </MemoryRouter>);
+        });
+
+        await waitFor(() => {
+            expect(testLocation!.pathname).toBe(`/`);
         });
     });
 });

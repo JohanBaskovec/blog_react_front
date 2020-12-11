@@ -1,5 +1,5 @@
 import {DefaultApi} from "./openapi/apis";
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Redirect} from "react-router-dom";
 import "./ArticleForm.scss";
 import {Form} from "./form/Form";
@@ -13,6 +13,7 @@ import {AppLink} from "./AppLink";
 import {RandomService} from "./RandomService";
 import {Formik, FormikHelpers} from "formik";
 import * as Yup from 'yup';
+import {SessionContext} from "./SessionContext";
 
 export enum FormType {
     edition,
@@ -38,15 +39,22 @@ export function ArticleForm({api, randomService, articleId}: ArticleFormProps) {
     const [article, setArticle] = useState<Article | null>(null);
     const [error, setError] = useState<ApiError | null>(null);
     const [persisted, setPersisted] = useState(false);
+    const session = useContext(SessionContext);
 
     useEffect(() => {
         if (type === FormType.edition) {
-            api.getArticleById({id: articleId!}).subscribe((article) => {
+            let subscription = api.getArticleById({id: articleId!}).subscribe((article) => {
                     setArticle(article);
                 },
                 (error) => {
                     setError(ApiError.fromError(error));
                 });
+            // we must cancel the request otherwise React will complain
+            // about executing an update on an unmounted component
+            // (which could be a memory leak)
+            return () => {
+                subscription.unsubscribe();
+            }
         } else {
             setArticle({
                 content: '',
@@ -55,6 +63,14 @@ export function ArticleForm({api, randomService, articleId}: ArticleFormProps) {
             });
         }
     }, [])
+
+    if (session.user == null) {
+        if (articleId) {
+            return <Redirect to={`/article/${articleId}`}/>
+        } else {
+            return <Redirect to={`/`}/>
+        }
+    }
 
     if (article == null) {
         return (<div>Loading...</div>);
