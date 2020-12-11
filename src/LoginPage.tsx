@@ -11,7 +11,7 @@ import {Button} from "./form/Button";
 
 interface LoginPageProps {
     api: DefaultApi;
-    setSession: Dispatch<SetStateAction<Session>>;
+    setSession: (session: Session) => void;
 }
 
 export function LoginPage(props: LoginPageProps) {
