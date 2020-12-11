@@ -15,6 +15,9 @@ import { Observable } from 'rxjs';
 import { BaseAPI, HttpHeaders, throwIfNullOrUndefined, encodeURI } from '../runtime';
 import {
     Article,
+    LoginForm,
+    RegistrationForm,
+    User,
 } from '../models';
 
 export interface GetArticleByIdRequest {
@@ -23,6 +26,14 @@ export interface GetArticleByIdRequest {
 
 export interface InsertArticleRequest {
     article: Article;
+}
+
+export interface LoginRequest {
+    loginForm: LoginForm;
+}
+
+export interface RegisterRequest {
+    registrationForm: RegistrationForm;
 }
 
 export interface UpdateArticleRequest {
@@ -57,6 +68,20 @@ export class DefaultApi extends BaseAPI {
     };
 
     /**
+     * Get the current session
+     */
+    getCurrentAuthenticatedUser = (): Observable<User> => {
+        const headers: HttpHeaders = {
+        };
+
+        return this.request<User>({
+            path: '/me',
+            method: 'GET',
+            headers,
+        });
+    };
+
+    /**
      * Insert an article
      */
     insertArticle = ({ article }: InsertArticleRequest): Observable<void> => {
@@ -71,6 +96,56 @@ export class DefaultApi extends BaseAPI {
             method: 'POST',
             headers,
             body: article,
+        });
+    };
+
+    /**
+     * Create a new HTTP session
+     */
+    login = ({ loginForm }: LoginRequest): Observable<User> => {
+        throwIfNullOrUndefined(loginForm, 'login');
+
+        const headers: HttpHeaders = {
+            'Content-Type': 'application/json',
+        };
+
+        return this.request<User>({
+            path: '/login',
+            method: 'POST',
+            headers,
+            body: loginForm,
+        });
+    };
+
+    /**
+     * Logout
+     */
+    logout = (): Observable<void> => {
+        const headers: HttpHeaders = {
+        };
+
+        return this.request<void>({
+            path: '/logout',
+            method: 'POST',
+            headers,
+        });
+    };
+
+    /**
+     * Register
+     */
+    register = ({ registrationForm }: RegisterRequest): Observable<void> => {
+        throwIfNullOrUndefined(registrationForm, 'register');
+
+        const headers: HttpHeaders = {
+            'Content-Type': 'application/json',
+        };
+
+        return this.request<void>({
+            path: '/register',
+            method: 'POST',
+            headers,
+            body: registrationForm,
         });
     };
 

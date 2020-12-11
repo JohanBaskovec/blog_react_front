@@ -3,6 +3,7 @@ import TestRenderer from 'react-test-renderer';
 import {Button} from "./Button";
 import {fireEvent, render, screen} from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
+import {Formik} from "formik";
 
 describe('Button', () => {
     it("can be clicked", () => {
@@ -10,7 +11,12 @@ describe('Button', () => {
         const onClick = () => {
             called = true;
         }
-        const element = <Button type="button" onClick={onClick}>Submit</Button>;
+        const element = (
+            <Formik initialValues={{}} onSubmit={() => {
+            }}>
+                <Button type="button" onClick={onClick}>Submit</Button>
+            </Formik>
+        );
         render(element);
         expect(screen.getByRole('button', {name: 'Submit'})).not.toBeNull();
         fireEvent.click(screen.getByText('Submit'));
@@ -21,7 +27,12 @@ describe('Button', () => {
         const onClick = () => {
         }
         const tree = TestRenderer
-            .create(<Button type="button" onClick={onClick}>Submit</Button>)
+            .create(
+                <Formik initialValues={{}} onSubmit={() => {
+                }}>
+                    <Button type="button" onClick={onClick}>Submit</Button>
+                </Formik>
+            )
             .toJSON();
         expect(tree).toMatchSnapshot();
     });

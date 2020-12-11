@@ -2,7 +2,8 @@
 
 exports[`Button is rendered properly 1`] = `
 <button
-  className="Button"
+  className="Button "
+  disabled={false}
   onClick={[Function]}
   type="button"
 >
