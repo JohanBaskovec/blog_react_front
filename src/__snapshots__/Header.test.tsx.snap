@@ -18,7 +18,7 @@ exports[`Header is rendered properly 1`] = `
     }
   >
     <ul
-      className="Header__navList"
+      className="Header__left-nav-list"
     >
       <li
         className="Header__navListElement"
@@ -31,6 +31,10 @@ exports[`Header is rendered properly 1`] = `
           Home
         </a>
       </li>
+    </ul>
+    <ul
+      className="Header__right-nav-list"
+    >
       <li
         className="Header__navListElement"
       >
