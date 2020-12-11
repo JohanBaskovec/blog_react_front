@@ -7,7 +7,7 @@ import {InputFormGroup} from "./form/InputFormGroup";
 import {TextAreaFormGroup} from "./form/TextAreaFormGroup";
 import {Article} from "./openapi/models";
 import {ApiError} from "./ApiError";
-import {Button} from "./form/Button";
+import {FormButton} from "./form/FormButton";
 import {FormButtonsContainer} from "./form/FormButtonsContainer";
 import {AppLink} from "./AppLink";
 import {RandomService} from "./RandomService";
@@ -108,7 +108,7 @@ export function ArticleForm({api, randomService, articleId}: ArticleFormProps) {
                     </TextAreaFormGroup>
                     <FormButtonsContainer>
                         {persisted ? (<div className="saved-indicator">Saved</div>) : null}
-                        <Button type="submit">Submit</Button>
+                        <FormButton type="submit">Submit</FormButton>
                     </FormButtonsContainer>
                 </Form>
             </Formik>

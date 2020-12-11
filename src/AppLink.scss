@@ -1,16 +1,27 @@
 .AppLink {
   transition: all 0.2s;
   text-decoration: none;
+  cursor: pointer;
 }
 
+$red: D00000;
+$prussianBlue: #1C3144;
+$selectiveYellow: #FFBA08;
+$cadetBlueCrayola: #A2AEBB;
+$greenBueCrayola: #3F88C8;
+
 .AppLink--blue {
-  $color: #3270c9;
+  $color: $greenBueCrayola;
   color: $color;
   &:visited {
     color: $color;
   }
   &:hover {
-    color: #7b9ecd;
+    color: $selectiveYellow;
+  }
+  &:focus {
+    color: $selectiveYellow;
+    outline: 1px dotted $color;
   }
 }
 
@@ -21,6 +32,11 @@
     color: $color;
   }
   &:hover {
-    color: #adbedb;
+    color: $selectiveYellow;
+  }
+
+  &:focus {
+    color: $selectiveYellow;
+    outline: 1px dotted white;
   }
 }

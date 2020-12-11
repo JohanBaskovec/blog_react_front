@@ -1,6 +1,6 @@
 import React from "react";
 import TestRenderer from 'react-test-renderer';
-import {Button} from "./Button";
+import {FormButton} from "./FormButton";
 import {fireEvent, render, screen} from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import {Formik} from "formik";
@@ -14,7 +14,7 @@ describe('Button', () => {
         const element = (
             <Formik initialValues={{}} onSubmit={() => {
             }}>
-                <Button type="button" onClick={onClick}>Submit</Button>
+                <FormButton type="button" onClick={onClick}>Submit</FormButton>
             </Formik>
         );
         render(element);
@@ -30,7 +30,7 @@ describe('Button', () => {
             .create(
                 <Formik initialValues={{}} onSubmit={() => {
                 }}>
-                    <Button type="button" onClick={onClick}>Submit</Button>
+                    <FormButton type="button" onClick={onClick}>Submit</FormButton>
                 </Formik>
             )
             .toJSON();

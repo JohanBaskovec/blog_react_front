@@ -17,10 +17,13 @@ export function AppLink(props: LinkProps): JSX.Element {
     if (props.to) {
         return (<Link className={`AppLink AppLink--${color}`} to={props.to}>
             {props.children}
-        </Link>)
+        </Link>);
     } else {
-        return (<a className={`AppLink AppLink--${color}`} onClick={props.onClick}>
+        return (<a className={`AppLink AppLink--${color}`}
+                   role="button"
+                   tabIndex={0}
+                   onClick={props.onClick}>
             {props.children}
-        </a>)
+        </a>);
     }
 }

@@ -9,7 +9,7 @@ export interface ButtonProps {
     type: 'submit' | 'button';
 }
 
-export function Button(props: ButtonProps) {
+export function FormButton(props: ButtonProps) {
     const formikContext = useFormikContext();
     return (
         <button type={props.type}

@@ -7,7 +7,7 @@ import {LoginForm, User} from "./openapi/models";
 import {Form} from "./form/Form";
 import {InputFormGroup} from "./form/InputFormGroup";
 import {FormButtonsContainer} from "./form/FormButtonsContainer";
-import {Button} from "./form/Button";
+import {FormButton} from "./form/FormButton";
 
 interface LoginPageProps {
     api: DefaultApi;
@@ -47,7 +47,7 @@ export function LoginPage(props: LoginPageProps) {
                                     inputLabel="Password">
                     </InputFormGroup>
                     <FormButtonsContainer>
-                        <Button type="submit">Submit</Button>
+                        <FormButton type="submit">Submit</FormButton>
                     </FormButtonsContainer>
                 </Form>
             </Formik>

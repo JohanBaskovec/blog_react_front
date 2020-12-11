@@ -1,5 +1,5 @@
 import "./Header.scss";
-import {AppLink} from "./AppLink";
+import {HeaderLink} from "./HeaderLink";
 import {useContext} from "react";
 import {Session, SessionContext} from "./SessionContext";
 
@@ -14,18 +14,25 @@ export function Header(props: HeaderProps) {
     return (<header className="Header" style={props.style}>
         <nav style={{flexBasis: props.contentWidth}}
              className="Header__nav">
-            <ul className="Header__navList">
+            <ul className="Header__left-nav-list">
                 <li className="Header__navListElement">
-                    <AppLink color="white" to="/">Home</AppLink>
-                    {session.user?.username}
+                    <HeaderLink to="/">Home</HeaderLink>
                 </li>
+            </ul>
+            <ul className="Header__right-nav-list">
                 {session.user ?
-                    <li className="Header__navListElement">
-                        <AppLink color="white" onClick={props.logout}>Logout</AppLink>
-                    </li>
+                    (<>
+                            <li className="Header__navListElement">
+                                <HeaderLink to="/profile">{session.user.username}</HeaderLink>
+                            </li>
+                            <li className="Header__navListElement">
+                                <HeaderLink onClick={props.logout}>Logout</HeaderLink>
+                            </li>
+                        </>
+                    )
                     :
                     <li className="Header__navListElement">
-                        <AppLink color="white" to="/login">Login</AppLink>
+                        <HeaderLink to="/login">Login</HeaderLink>
                     </li>
                 }
             </ul>

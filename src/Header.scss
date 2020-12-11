@@ -12,12 +12,23 @@
 
 .Header__nav {
   display: flex;
+  justify-content: space-between;
 }
 
-.Header__navList {
+.Header__left-nav-list {
   margin: 0;
   padding: 0;
   list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.Header__right-nav-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
 }
 
 .Header__navListElement {
