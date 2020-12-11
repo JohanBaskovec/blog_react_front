@@ -13,6 +13,8 @@ import {LoginPage} from "./LoginPage";
 import {User} from "./openapi/models";
 import assert from "assert";
 import {Configuration, RequestArgs} from "./openapi";
+import {ServiceUnavailablePage} from "./ServiceUnavailablePage";
+import {AjaxError} from "rxjs/internal/observable/dom/AjaxObservable";
 
 export interface AppProps {
     api?: DefaultApi;
@@ -39,6 +41,7 @@ function App(props: AppProps) {
     const [session, setSession] = useState<Session>({
         user: undefined,
     });
+    const [serviceUnavailable, setServiceUnavailable] = useState(false);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         assert(api != null);
@@ -47,6 +50,18 @@ function App(props: AppProps) {
                 setLoading(false);
             },
             (err) => {
+                if (err.name && err.name === 'AjaxError') {
+                    switch (err.status) {
+                        case 0:
+                            setServiceUnavailable(true);
+                            break;
+                        case 401:
+                            setSession({});
+                            break;
+                        default:
+                            break;
+                    }
+                }
                 setLoading(false);
             });
     }, []);
@@ -56,6 +71,7 @@ function App(props: AppProps) {
             setSession({});
         });
     }
+
     if (loading) {
         return (<div>Loading user...</div>);
     }
@@ -72,23 +88,27 @@ function App(props: AppProps) {
                             contentWidth={mainPageContentBasis}></Header>
                     <main className="MainPageContent"
                           style={{flexBasis: mainPageContentBasis}}>
-                        <Switch>
-                            <Route path="/article/:id/edit">
-                                <ArticleFormRouterWrapper api={api} randomService={randomService}/>
-                            </Route>
-                            <Route path="/article/new">
-                                <ArticleFormRouterWrapper api={api} randomService={randomService}/>
-                            </Route>
-                            <Route path="/article/:id">
-                                <ArticleFull api={api}/>
-                            </Route>
-                            <Route path="/login">
-                                <LoginPage api={api} setSession={setSession}/>
-                            </Route>
-                            <Route path="/">
-                                <ArticleList api={api}/>
-                            </Route>
-                        </Switch>
+
+                        {serviceUnavailable ?
+                            <ServiceUnavailablePage/> :
+                            <Switch>
+                                <Route path="/article/:id/edit">
+                                    <ArticleFormRouterWrapper api={api} randomService={randomService}/>
+                                </Route>
+                                <Route path="/article/new">
+                                    <ArticleFormRouterWrapper api={api} randomService={randomService}/>
+                                </Route>
+                                <Route path="/article/:id">
+                                    <ArticleFull api={api}/>
+                                </Route>
+                                <Route path="/login">
+                                    <LoginPage api={api} setSession={setSession}/>
+                                </Route>
+                                <Route path="/">
+                                    <ArticleList api={api}/>
+                                </Route>
+                            </Switch>
+                        }
                     </main>
                 </div>
             </Router>
