@@ -76,19 +76,18 @@ function App(props: AppProps) {
         return (<div>Loading user...</div>);
     }
 
-    const headerHeight = "3rem";
+    const headerHeight = 3;
     const mainPageContentBasis = "70%";
     // noinspection CheckTagEmptyBody
     return (
         <SessionContext.Provider value={session}>
             <Router>
-                <div className="App" style={{marginTop: headerHeight}}>
-                    <Header style={{height: headerHeight}}
+                <div className="App">
+                    <Header style={{height: headerHeight + "rem"}}
                             logout={logout}
                             contentWidth={mainPageContentBasis}></Header>
                     <main className="MainPageContent"
-                          style={{flexBasis: mainPageContentBasis}}>
-
+                          style={{flexBasis: mainPageContentBasis, paddingTop: (headerHeight + 1) + "rem" }}>
                         {serviceUnavailable ?
                             <ServiceUnavailablePage/> :
                             <Switch>
