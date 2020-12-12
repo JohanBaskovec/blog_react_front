@@ -44,7 +44,11 @@ export function ArticleForm({api, randomService, articleId}: ArticleFormProps) {
     useEffect(() => {
         if (type === FormType.edition) {
             let subscription = api.getArticleById({id: articleId!}).subscribe((article: Article) => {
-                    setArticle(article);
+                    setArticle({
+                        content: article.content,
+                        id: article.id,
+                        title: article.title,
+                    });
                 },
                 (error) => {
                     setError(ApiError.fromError(error));
