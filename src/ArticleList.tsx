@@ -5,6 +5,7 @@ import {ArticleSummary} from "./ArticleSummary";
 import "./ArticleList.scss";
 import {AppLink} from "./AppLink";
 import {SessionContext} from "./SessionContext";
+import assert from "assert";
 
 export interface ArticleListProps {
     api: DefaultApi;
@@ -12,17 +13,40 @@ export interface ArticleListProps {
 
 export function ArticleList({api}: ArticleListProps) {
     const [articles, setArticles] = useState<Article[]>([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<any>(null);
     useEffect(() => {
-        api.getAllArticles().subscribe(articles => {
-            setArticles(articles);
-        });
+        setLoading(true);
+        const getAllArticles$ = api.getAllArticles()
+            .subscribe(articles => {
+                    setArticles(articles);
+                    setLoading(false);
+                },
+                (err) => {
+                    setLoading(false);
+                    setError(err);
+                });
+        return () => {
+            getAllArticles$.unsubscribe();
+        }
     }, []);
-    const articleSummaryMargin = "8px";
+    const articleSummaryMargin = "24px";
     const articleSummaryStyle = {
-        marginTop: articleSummaryMargin,
         marginBottom: articleSummaryMargin
     };
     const session = useContext(SessionContext);
+    let body = null;
+
+    if (loading) {
+        body = <>Loading articles...</>;
+    } else if (error) {
+        const errorResponse = error.response ? error.response.message : "Unknown error.";
+        body = <>An error happened: {errorResponse}</>;
+    } else {
+        body = articles.map((article) => <ArticleSummary key={article.id}
+                                                       article={article}
+                                                       style={articleSummaryStyle}/>);
+    }
     return (
         <div className="ArticleList">
             {session.user ?
@@ -31,11 +55,7 @@ export function ArticleList({api}: ArticleListProps) {
                 </div> :
                 null
             }
-            <div>
-                {articles.map((article) => <ArticleSummary key={article.id}
-                                                           article={article}
-                                                           style={articleSummaryStyle}/>)}
-            </div>
+            {body}
         </div>
     )
 }

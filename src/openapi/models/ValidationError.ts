@@ -13,22 +13,17 @@
 
 /**
  * @export
- * @interface User
+ * @interface ValidationError
  */
-export interface User {
+export interface ValidationError {
     /**
      * @type {string}
-     * @memberof User
+     * @memberof ValidationError
      */
-    username: string;
+    message: string;
     /**
      * @type {string}
-     * @memberof User
+     * @memberof ValidationError
      */
-    password?: string | null;
-    /**
-     * @type {number}
-     * @memberof User
-     */
-    version: number;
+    parameterName: string;
 }

@@ -6,6 +6,7 @@ import {ApiError, ApiErrorType} from "./ApiError";
 import {TitleLevel2} from "./TitleLevel2";
 import {AppLink} from "./AppLink";
 import {SessionContext} from "./SessionContext";
+import "./ArticleFull.scss";
 
 export interface ArticleFullProps {
     api: DefaultApi;
@@ -19,28 +20,37 @@ export function ArticleFull({api}: ArticleFullProps) {
     const {id}: ArticleFullPathParams = useParams<ArticleFullPathParams>();
     const [article, setArticle] = useState<Article | null>(null);
     const [error, setError] = useState<ApiError | null>(null);
+    const [loading, setLoading] = useState(false);
     const session = useContext(SessionContext);
     useEffect(() => {
+        setLoading(true);
         api.getArticleById({id: id}).subscribe((article) => {
                 setArticle(article);
+                setLoading(false);
             },
             (error) => {
                 setError(ApiError.fromError(error));
+                setLoading(false);
             });
     }, [])
 
-    if (error) {
+    let body = null;
+    if (loading) {
+        body = <>Loading article...</>
+    } else if (error) {
         if (error.type === ApiErrorType.notFound) {
-            return <div>This article doesn't exist.</div>
+            body = <>This article doesn't exist.</>
         } else {
-            return <div>An error happened, please try again later.</div>
+            body = <>An error happened, please try again later.</>
         }
-    }
-    return (
-        <article className="ArticleFull">
-            <TitleLevel2 style={{marginBottom: "1rem"}}>
+    } else {
+        body = <>
+            <TitleLevel2 className="ArticleFull__title">
                 {article?.title}
             </TitleLevel2>
+            <div className="ArticleFull__author_name">
+                by {article?.author.username}
+            </div>
             {session.user ?
                 <div className="ArticleFull__editionLink">
                     <AppLink to={'/article/' + article?.id + '/edit'}>Edit</AppLink>
@@ -50,6 +60,11 @@ export function ArticleFull({api}: ArticleFullProps) {
             <div className="ArticleFull__content">
                 {article?.content}
             </div>
+        </>;
+    }
+    return (
+        <article className="ArticleFull">
+            {body}
         </article>
     )
 }

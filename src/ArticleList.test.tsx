@@ -54,6 +54,10 @@ describe('ArticleList', () => {
                     id: "id",
                     title: "title",
                     content: "content",
+                    author: {
+                        username: 'username',
+                    },
+                    version: 0,
                 },
             ];
             return of(articles);
@@ -105,16 +109,28 @@ describe('ArticleList', () => {
                     id: "id0",
                     title: "title0",
                     content: "content0",
+                    author: {
+                        username: 'username',
+                    },
+                    version: 0,
                 },
                 {
                     id: "id1",
                     title: "title1",
                     content: "content1",
+                    author: {
+                        username: 'username',
+                    },
+                    version: 0,
                 },
                 {
                     id: "id2",
                     title: "title2",
                     content: "content2",
+                    author: {
+                        username: 'username',
+                    },
+                    version: 0,
                 },
             ];
             return of(articles);

@@ -3,38 +3,40 @@
 exports[`ArticleList renders the article list when there are 3 articles and user in logged in 1`] = `
 "<div class=\\"ArticleList\\">
   <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/new\\">New article</a></div>
-  <div>
-    <div class=\\"ArticleSummary\\" style=\\"margin-top: 8px; margin-bottom: 8px;\\">
-      <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id0\\">title0</a></div>
-      <div>content0</div>
-    </div>
-    <div class=\\"ArticleSummary\\" style=\\"margin-top: 8px; margin-bottom: 8px;\\">
-      <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id1\\">title1</a></div>
-      <div>content1</div>
-    </div>
-    <div class=\\"ArticleSummary\\" style=\\"margin-top: 8px; margin-bottom: 8px;\\">
-      <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id2\\">title2</a></div>
-      <div>content2</div>
-    </div>
+  <div class=\\"ArticleSummary\\" style=\\"margin-bottom: 24px;\\">
+    <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id0\\">title0</a></div>
+    <div class=\\"ArticleSummary__author\\">by username</div>
+    <div>content0</div>
+  </div>
+  <div class=\\"ArticleSummary\\" style=\\"margin-bottom: 24px;\\">
+    <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id1\\">title1</a></div>
+    <div class=\\"ArticleSummary__author\\">by username</div>
+    <div>content1</div>
+  </div>
+  <div class=\\"ArticleSummary\\" style=\\"margin-bottom: 24px;\\">
+    <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id2\\">title2</a></div>
+    <div class=\\"ArticleSummary__author\\">by username</div>
+    <div>content2</div>
   </div>
 </div>"
 `;
 
 exports[`ArticleList renders the article list when there are 3 articles and user in logged out 1`] = `
 "<div class=\\"ArticleList\\">
-  <div>
-    <div class=\\"ArticleSummary\\" style=\\"margin-top: 8px; margin-bottom: 8px;\\">
-      <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id0\\">title0</a></div>
-      <div>content0</div>
-    </div>
-    <div class=\\"ArticleSummary\\" style=\\"margin-top: 8px; margin-bottom: 8px;\\">
-      <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id1\\">title1</a></div>
-      <div>content1</div>
-    </div>
-    <div class=\\"ArticleSummary\\" style=\\"margin-top: 8px; margin-bottom: 8px;\\">
-      <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id2\\">title2</a></div>
-      <div>content2</div>
-    </div>
+  <div class=\\"ArticleSummary\\" style=\\"margin-bottom: 24px;\\">
+    <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id0\\">title0</a></div>
+    <div class=\\"ArticleSummary__author\\">by username</div>
+    <div>content0</div>
+  </div>
+  <div class=\\"ArticleSummary\\" style=\\"margin-bottom: 24px;\\">
+    <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id1\\">title1</a></div>
+    <div class=\\"ArticleSummary__author\\">by username</div>
+    <div>content1</div>
+  </div>
+  <div class=\\"ArticleSummary\\" style=\\"margin-bottom: 24px;\\">
+    <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id2\\">title2</a></div>
+    <div class=\\"ArticleSummary__author\\">by username</div>
+    <div>content2</div>
   </div>
 </div>"
 `;
@@ -42,18 +44,16 @@ exports[`ArticleList renders the article list when there are 3 articles and user
 exports[`ArticleList renders the article list when there are no articles and user is logged in 1`] = `
 "<div class=\\"ArticleList\\">
   <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/new\\">New article</a></div>
-  <div></div>
 </div>"
 `;
 
 exports[`ArticleList renders the article list when there is 1 article and user is logged in 1`] = `
 "<div class=\\"ArticleList\\">
   <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/new\\">New article</a></div>
-  <div>
-    <div class=\\"ArticleSummary\\" style=\\"margin-top: 8px; margin-bottom: 8px;\\">
-      <div><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id\\">title</a></div>
-      <div>content</div>
-    </div>
+  <div class=\\"ArticleSummary\\" style=\\"margin-bottom: 24px;\\">
+    <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id\\">title</a></div>
+    <div class=\\"ArticleSummary__author\\">by username</div>
+    <div>content</div>
   </div>
 </div>"
 `;

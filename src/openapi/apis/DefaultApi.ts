@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
 import { BaseAPI, HttpHeaders, throwIfNullOrUndefined, encodeURI } from '../runtime';
 import {
     Article,
+    ArticleFormData,
     LoginForm,
     RegistrationForm,
     User,
@@ -25,7 +26,7 @@ export interface GetArticleByIdRequest {
 }
 
 export interface InsertArticleRequest {
-    article: Article;
+    articleFormData: ArticleFormData;
 }
 
 export interface LoginRequest {
@@ -37,7 +38,7 @@ export interface RegisterRequest {
 }
 
 export interface UpdateArticleRequest {
-    article: Article;
+    articleFormData: ArticleFormData;
 }
 
 /**
@@ -84,8 +85,8 @@ export class DefaultApi extends BaseAPI {
     /**
      * Insert an article
      */
-    insertArticle = ({ article }: InsertArticleRequest): Observable<void> => {
-        throwIfNullOrUndefined(article, 'insertArticle');
+    insertArticle = ({ articleFormData }: InsertArticleRequest): Observable<void> => {
+        throwIfNullOrUndefined(articleFormData, 'insertArticle');
 
         const headers: HttpHeaders = {
             'Content-Type': 'application/json',
@@ -95,7 +96,7 @@ export class DefaultApi extends BaseAPI {
             path: '/article',
             method: 'POST',
             headers,
-            body: article,
+            body: articleFormData,
         });
     };
 
@@ -152,8 +153,8 @@ export class DefaultApi extends BaseAPI {
     /**
      * Update an article
      */
-    updateArticle = ({ article }: UpdateArticleRequest): Observable<void> => {
-        throwIfNullOrUndefined(article, 'updateArticle');
+    updateArticle = ({ articleFormData }: UpdateArticleRequest): Observable<void> => {
+        throwIfNullOrUndefined(articleFormData, 'updateArticle');
 
         const headers: HttpHeaders = {
             'Content-Type': 'application/json',
@@ -163,7 +164,7 @@ export class DefaultApi extends BaseAPI {
             path: '/article',
             method: 'PUT',
             headers,
-            body: article,
+            body: articleFormData,
         });
     };
 

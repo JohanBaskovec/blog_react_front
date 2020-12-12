@@ -12,9 +12,8 @@ import {Session, SessionContext} from "./SessionContext";
 import {LoginPage} from "./LoginPage";
 import {User} from "./openapi/models";
 import assert from "assert";
-import {Configuration, RequestArgs} from "./openapi";
+import {Configuration} from "./openapi";
 import {ServiceUnavailablePage} from "./ServiceUnavailablePage";
-import {AjaxError} from "rxjs/internal/observable/dom/AjaxObservable";
 
 export interface AppProps {
     api?: DefaultApi;

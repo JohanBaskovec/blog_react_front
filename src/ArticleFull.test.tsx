@@ -34,6 +34,10 @@ describe('ArticleFull', () => {
                 id: id,
                 title: 'title',
                 content: 'content',
+                author: {
+                    username: 'username',
+                },
+                version: 0,
             }
             return of(article);
         });
@@ -61,6 +65,10 @@ describe('ArticleFull', () => {
                 id: id,
                 title: 'title',
                 content: 'content',
+                author: {
+                    username: 'username',
+                },
+                version: 0,
             }
             return of(article);
         });

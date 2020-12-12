@@ -1,3 +1,14 @@
+@import "variables";
+
 .ArticleFull {
   display: flex;
+  flex-direction: column;
+  &__author_name {
+    color: $grey3;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    margin-bottom: 0.5rem;
+  }
 }

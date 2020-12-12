@@ -13,22 +13,22 @@
 
 /**
  * @export
- * @interface User
+ * @interface ArticleCreationRequest
  */
-export interface User {
+export interface ArticleCreationRequest {
     /**
      * @type {string}
-     * @memberof User
+     * @memberof ArticleCreationRequest
      */
-    username: string;
+    id: string;
     /**
      * @type {string}
-     * @memberof User
+     * @memberof ArticleCreationRequest
      */
-    password?: string | null;
+    title: string;
     /**
-     * @type {number}
-     * @memberof User
+     * @type {string}
+     * @memberof ArticleCreationRequest
      */
-    version: number;
+    content: string;
 }

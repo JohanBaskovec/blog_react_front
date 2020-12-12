@@ -11,6 +11,10 @@
  * Do not edit the class manually.
  */
 
+import {
+    User,
+} from './';
+
 /**
  * @export
  * @interface Article
@@ -31,4 +35,14 @@ export interface Article {
      * @memberof Article
      */
     content: string;
+    /**
+     * @type {User}
+     * @memberof Article
+     */
+    author: User;
+    /**
+     * @type {number}
+     * @memberof Article
+     */
+    version: number;
 }

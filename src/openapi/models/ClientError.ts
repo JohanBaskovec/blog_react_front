@@ -13,22 +13,17 @@
 
 /**
  * @export
- * @interface User
+ * @interface ClientError
  */
-export interface User {
+export interface ClientError {
     /**
      * @type {string}
-     * @memberof User
+     * @memberof ClientError
      */
-    username: string;
+    message: string;
     /**
      * @type {string}
-     * @memberof User
+     * @memberof ClientError
      */
-    password?: string | null;
-    /**
-     * @type {number}
-     * @memberof User
-     */
-    version: number;
+    parameterName: string;
 }

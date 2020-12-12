@@ -5,7 +5,7 @@ import "./ArticleForm.scss";
 import {Form} from "./form/Form";
 import {InputFormGroup} from "./form/InputFormGroup";
 import {TextAreaFormGroup} from "./form/TextAreaFormGroup";
-import {Article} from "./openapi/models";
+import {Article, ArticleFormData} from "./openapi/models";
 import {ApiError} from "./ApiError";
 import {FormButton} from "./form/FormButton";
 import {FormButtonsContainer} from "./form/FormButtonsContainer";
@@ -36,14 +36,14 @@ export function ArticleForm({api, randomService, articleId}: ArticleFormProps) {
     if (articleId == null) {
         type = FormType.creation;
     }
-    const [article, setArticle] = useState<Article | null>(null);
+    const [article, setArticle] = useState<ArticleFormData | null>(null);
     const [error, setError] = useState<ApiError | null>(null);
     const [persisted, setPersisted] = useState(false);
     const session = useContext(SessionContext);
 
     useEffect(() => {
         if (type === FormType.edition) {
-            let subscription = api.getArticleById({id: articleId!}).subscribe((article) => {
+            let subscription = api.getArticleById({id: articleId!}).subscribe((article: Article) => {
                     setArticle(article);
                 },
                 (error) => {
@@ -92,10 +92,10 @@ export function ArticleForm({api, randomService, articleId}: ArticleFormProps) {
                         title: Yup.string().required('Required'),
                         content: Yup.string().required('Required')
                     })}
-                    onSubmit={(article: Article, {setSubmitting}: FormikHelpers<Article>) => {
+                    onSubmit={(articleFormData: ArticleFormData, {setSubmitting}: FormikHelpers<ArticleFormData>) => {
                         setPersisted(false);
                         if (type === FormType.edition) {
-                            api.updateArticle({article}).subscribe(() => {
+                            api.updateArticle({articleFormData}).subscribe(() => {
                                     setSubmitting(false);
                                     setPersisted(true);
                                 },
@@ -103,7 +103,7 @@ export function ArticleForm({api, randomService, articleId}: ArticleFormProps) {
                                     setSubmitting(false);
                                 });
                         } else {
-                            api.insertArticle({article}).subscribe(() => {
+                            api.insertArticle({articleFormData}).subscribe(() => {
                                     setSubmitting(false);
                                     setPersisted(true);
                                 },
