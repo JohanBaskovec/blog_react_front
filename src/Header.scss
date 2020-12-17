@@ -15,24 +15,20 @@
 .Header__nav {
   display: flex;
   justify-content: space-between;
+  margin: 0 -1rem;
 }
 
-.Header__left-nav-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-}
-
+.Header__left-nav-list,
 .Header__right-nav-list {
   margin: 0;
   padding: 0;
   list-style: none;
   display: flex;
   flex-direction: row;
+  margin: 0 -1rem;
 }
 
-.Header__navListElement {
 
+.Header__navListElement {
+  margin: 0 1rem;
 }

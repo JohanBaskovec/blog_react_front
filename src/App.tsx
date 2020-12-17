@@ -15,6 +15,7 @@ import assert from "assert";
 import {Configuration} from "./openapi";
 import {ServiceUnavailablePage} from "./ServiceUnavailablePage";
 import {Footer} from "./Footer";
+import {RegistrationPage} from "./RegistrationPage";
 
 export interface AppProps {
     api?: DefaultApi;
@@ -100,6 +101,9 @@ function App(props: AppProps) {
                                 </Route>
                                 <Route path="/login">
                                     <LoginPage api={api} setSession={setSession}/>
+                                </Route>
+                                <Route path="/register">
+                                    <RegistrationPage api={api}/>
                                 </Route>
                                 <Route path="/">
                                     <ArticleList api={api}/>

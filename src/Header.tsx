@@ -31,9 +31,14 @@ export function Header(props: HeaderProps) {
                         </>
                     )
                     :
-                    <li className="Header__navListElement">
-                        <HeaderLink to="/login">Login</HeaderLink>
-                    </li>
+                    <>
+                        <li className="Header__navListElement">
+                            <HeaderLink to="/register">Register</HeaderLink>
+                        </li>
+                        <li className="Header__navListElement">
+                            <HeaderLink to="/login">Login</HeaderLink>
+                        </li>
+                    </>
                 }
             </ul>
         </nav>

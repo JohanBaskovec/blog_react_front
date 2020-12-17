@@ -1,39 +1,50 @@
 import {DefaultApi} from "./openapi/apis";
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import {Session, SessionContext} from "./SessionContext";
 import {Formik, FormikHelpers} from "formik";
 import * as Yup from "yup";
-import {LoginForm, User} from "./openapi/models";
+import {RegistrationForm, User} from "./openapi/models";
 import {Form} from "./form/Form";
 import {InputFormGroup} from "./form/InputFormGroup";
 import {FormButtonsContainer} from "./form/FormButtonsContainer";
 import {FormButton} from "./form/FormButton";
+import {Redirect} from "react-router-dom";
+import {ApiError} from "./ApiError";
+import "./RegistrationPage.scss";
 
-interface LoginPageProps {
+interface RegistrationPageProps {
     api: DefaultApi;
-    setSession: (session: Session) => void;
 }
 
-export function LoginPage(props: LoginPageProps) {
+export function RegistrationPage(props: RegistrationPageProps) {
     const context = useContext(SessionContext);
+    const [registered, setRegistered] = useState(false);
+    const [error, setError] = useState<ApiError | null>(null);
+
+    if (registered) {
+        return <Redirect to="/login"/>;
+    }
     return (
-        <div className="LoginForm">
+        <div className="RegistrationPage">
+            {error != null ? <div>Error</div> : null}
             <Formik initialValues={{
                 username: '',
                 password: '',
-            } as LoginForm}
+            } as RegistrationForm}
                     validationSchema={Yup.object({
                         username: Yup.string().required('Required'),
                         password: Yup.string().required('Required')
                     })}
-                    onSubmit={(loginForm: LoginForm, {setSubmitting}: FormikHelpers<LoginForm>) => {
-                        props.api.login({loginForm}).subscribe((user: User) => {
-                                props.setSession({user});
-                            }, () => {
-
+                    onSubmit={(registrationForm: RegistrationForm, {setSubmitting}: FormikHelpers<RegistrationForm>) => {
+                        const register$ = props.api.register({registrationForm}).subscribe(() => {
+                                setSubmitting(false);
+                                setRegistered(true);
+                            }, (err) => {
+                                const apiError = ApiError.fromError(err);
+                                setError(apiError);
+                                setSubmitting(false);
                             },
                             () => {
-                                setSubmitting(false);
                             });
                     }
                     }>
