@@ -1,12 +1,14 @@
+@import "./variables";
 .Header {
   display: flex;
   position: fixed;
+  height: $headerHeight;
   width: 100%;
   top: 0;
   left: 0;
   justify-content: center;
   align-items: center;
-  background-color: #53719a;
+  background-color: $blue3;
   color: white;
 }
 

@@ -2,10 +2,13 @@
 
 .ArticleSummary {
   display: flex;
-  flex-direction: column;
-  border: 1px solid $grey1;
-  padding: 1rem;
   width: 100%;
+
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid $grey1;
+  flex: 1;
+  flex-direction: column;
 
   &__author {
     color: $grey3;

@@ -5,7 +5,6 @@ import {ArticleSummary} from "./ArticleSummary";
 import "./ArticleList.scss";
 import {AppLink} from "./AppLink";
 import {SessionContext} from "./SessionContext";
-import assert from "assert";
 
 export interface ArticleListProps {
     api: DefaultApi;
@@ -30,9 +29,9 @@ export function ArticleList({api}: ArticleListProps) {
             getAllArticles$.unsubscribe();
         }
     }, []);
-    const articleSummaryMargin = "24px";
+    const articleSummaryMargin = "1rem 0";
     const articleSummaryStyle = {
-        marginBottom: articleSummaryMargin
+        margin: articleSummaryMargin,
     };
     const session = useContext(SessionContext);
     let body = null;

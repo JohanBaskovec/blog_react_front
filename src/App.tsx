@@ -14,6 +14,7 @@ import {User} from "./openapi/models";
 import assert from "assert";
 import {Configuration} from "./openapi";
 import {ServiceUnavailablePage} from "./ServiceUnavailablePage";
+import {Footer} from "./Footer";
 
 export interface AppProps {
     api?: DefaultApi;
@@ -82,11 +83,9 @@ function App(props: AppProps) {
         <SessionContext.Provider value={session}>
             <Router>
                 <div className="App">
-                    <Header style={{height: headerHeight + "rem"}}
-                            logout={logout}
+                    <Header logout={logout}
                             contentWidth={mainPageContentBasis}></Header>
-                    <main className="MainPageContent"
-                          style={{flexBasis: mainPageContentBasis, paddingTop: (headerHeight + 1) + "rem" }}>
+                    <main className="App__content">
                         {serviceUnavailable ?
                             <ServiceUnavailablePage/> :
                             <Switch>
@@ -108,6 +107,8 @@ function App(props: AppProps) {
                             </Switch>
                         }
                     </main>
+
+                    <Footer></Footer>
                 </div>
             </Router>
         </SessionContext.Provider>
