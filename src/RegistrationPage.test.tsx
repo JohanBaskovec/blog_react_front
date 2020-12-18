@@ -1,5 +1,5 @@
 import React from "react";
-import {DefaultApi, LoginRequest} from "./openapi/apis";
+import {DefaultApi, LoginRequest, RegisterRequest} from "./openapi/apis";
 import {of} from "rxjs";
 import {mockDefaultApi} from "./mockClass";
 import {User} from "./openapi/models";
@@ -8,20 +8,15 @@ import {act} from 'react-test-renderer';
 import {fireEvent, render, screen, waitFor} from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import {History, Location, LocationState} from "history";
-import {LoginPage} from "./LoginPage";
+import {RegistrationPage} from "./RegistrationPage";
 import {Session} from "./SessionContext";
 
-describe('LoginPage', () => {
-    it("successful login", async () => {
+describe('RegistrationPage', () => {
+    it("successful registration", async () => {
         const api: DefaultApi = mockDefaultApi(new DefaultApi());
 
-        const user: User = {
-            username: 'username',
-            password: 'password',
-            version: 0,
-        }
-        api.login = jest.fn(({loginForm}: LoginRequest) => {
-            return of(user);
+        api.register = jest.fn(({registrationForm}: RegisterRequest) => {
+            return of();
         });
         let testHistory: History<LocationState>;
         let testLocation: Location<LocationState>;
@@ -30,7 +25,7 @@ describe('LoginPage', () => {
             session = newSession;
         };
         const node = <MemoryRouter initialEntries={['/login']}>
-            <LoginPage api={api} setSession={setSession}/>
+            <RegistrationPage api={api} />
             <Route
                 path="*"
                 render={(routeComponentProps: RouteComponentProps<any>) => {
@@ -49,14 +44,10 @@ describe('LoginPage', () => {
             screen.getByRole("form");
         });
         const usernameInput = screen.getByLabelText("Username");
-        expect(usernameInput).toHaveValue('');
         const passwordInput = screen.getByLabelText("Password");
-        expect(passwordInput).toHaveValue('');
 
-        fireEvent.input(usernameInput, {target: {value: user.username}});
-        expect(usernameInput).toHaveValue(user.username);
-        fireEvent.input(passwordInput, {target: {value: user.password}});
-        expect(passwordInput).toHaveValue(user.password);
+        fireEvent.input(usernameInput, {target: {value: 'username'}});
+        fireEvent.input(passwordInput, {target: {value: 'password'}});
 
         const submitButton = screen.getByRole('button', {name: 'Submit'});
         act(() => {
@@ -64,7 +55,7 @@ describe('LoginPage', () => {
         });
 
         await waitFor(() => {
-            expect(session.user).toBe(user);
+            expect(testLocation.pathname).toBe('/login');
         });
     });
 

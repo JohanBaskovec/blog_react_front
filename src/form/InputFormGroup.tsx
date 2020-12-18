@@ -2,7 +2,6 @@ import React from "react";
 import "./InputFormGroup.scss";
 import {Label} from "./Label";
 import {Input} from "./Input";
-import {FieldHelperProps, FieldInputProps, FieldMetaProps, useField} from "formik";
 import {ErrorContainer} from "./ErrorContainer";
 
 interface InputFormGroupProps {
@@ -13,7 +12,6 @@ interface InputFormGroupProps {
 }
 
 export function InputFormGroup(props: InputFormGroupProps): JSX.Element {
-    const [field, meta]: [FieldInputProps<any>, FieldMetaProps<any>, FieldHelperProps<any>] = useField(props.inputName);
     return (
         <div className="InputFormGroup"
              style={props.style}>

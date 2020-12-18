@@ -1,6 +1,5 @@
-import React, {useState} from "react";
+import React from "react";
 import "./Input.scss";
-import {ValueChangeEvent, ValueChangeEventHandler} from "./ValueChangeEvent";
 import {FieldHelperProps, FieldInputProps, FieldMetaProps, useField} from "formik";
 
 export interface InputProps {
@@ -9,8 +8,7 @@ export interface InputProps {
 }
 
 export function Input(props: InputProps): JSX.Element {
-    const [field, meta]: [FieldInputProps<any>, FieldMetaProps<any>, FieldHelperProps<any>] = useField(props.name);
-    const [dirty, setDirty] = useState(false);
+    const [field]: [FieldInputProps<any>, FieldMetaProps<any>, FieldHelperProps<any>] = useField(props.name);
     return (<input {...field}
                    id={props.name}
                    style={props.style}

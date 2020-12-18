@@ -1,9 +1,8 @@
 import {DefaultApi} from "./openapi/apis";
-import React, {useContext, useState} from "react";
-import {Session, SessionContext} from "./SessionContext";
+import React, {useState} from "react";
 import {Formik, FormikHelpers} from "formik";
 import * as Yup from "yup";
-import {RegistrationForm, User} from "./openapi/models";
+import {RegistrationForm} from "./openapi/models";
 import {Form} from "./form/Form";
 import {InputFormGroup} from "./form/InputFormGroup";
 import {FormButtonsContainer} from "./form/FormButtonsContainer";
@@ -17,7 +16,6 @@ interface RegistrationPageProps {
 }
 
 export function RegistrationPage(props: RegistrationPageProps) {
-    const context = useContext(SessionContext);
     const [registered, setRegistered] = useState(false);
     const [error, setError] = useState<ApiError | null>(null);
 
@@ -36,7 +34,7 @@ export function RegistrationPage(props: RegistrationPageProps) {
                         password: Yup.string().required('Required')
                     })}
                     onSubmit={(registrationForm: RegistrationForm, {setSubmitting}: FormikHelpers<RegistrationForm>) => {
-                        const register$ = props.api.register({registrationForm}).subscribe(() => {
+                        props.api.register({registrationForm}).subscribe(() => {
                                 setSubmitting(false);
                                 setRegistered(true);
                             }, (err) => {

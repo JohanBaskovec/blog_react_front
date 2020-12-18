@@ -2,7 +2,6 @@ import React from "react";
 import "./TextAreaFormGroup.scss";
 import {Label} from "./Label";
 import {TextArea} from "./TextArea";
-import {FieldHelperProps, FieldInputProps, FieldMetaProps, useField} from "formik";
 import {ErrorContainer} from "./ErrorContainer";
 
 interface TextAreaFormGroupProps {
@@ -13,7 +12,6 @@ interface TextAreaFormGroupProps {
 }
 
 export function TextAreaFormGroup(props: TextAreaFormGroupProps): JSX.Element {
-    const [field, meta]: [FieldInputProps<any>, FieldMetaProps<any>, FieldHelperProps<any>] = useField(props.inputName);
     return (
         <div className="TextAreaFormGroup"
              style={props.style}>

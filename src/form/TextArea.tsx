@@ -8,7 +8,7 @@ export interface TextAreaProps {
 }
 
 export function TextArea(props: TextAreaProps) {
-    const [field, meta]: [FieldInputProps<any>, FieldMetaProps<any>, FieldHelperProps<any>] = useField(props.name);
+    const [field]: [FieldInputProps<any>, FieldMetaProps<any>, FieldHelperProps<any>] = useField(props.name);
     // noinspection CheckTagEmptyBody
     return <textarea id={props.name}
                      className="TextArea"
