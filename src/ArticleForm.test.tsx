@@ -20,11 +20,17 @@ describe('ArticleForm', () => {
             id: 'id',
             title: 'title',
             content: 'content',
+            version: 0,
+            creationTime: 0,
+            author: {
+                username: 'user',
+                version: 0,
+            }
         }
         api.getArticleById = jest.fn(({id}: GetArticleByIdRequest) => {
             return of(article);
         });
-        api.insertArticle = jest.fn(({article}: UpdateArticleRequest) => {
+        api.insertArticle = jest.fn(({articleFormData}: UpdateArticleRequest) => {
             return of(undefined);
         });
         const randomService = mockClass(RandomService);
@@ -37,6 +43,7 @@ describe('ArticleForm', () => {
             user: {
                 password: "",
                 username: "",
+                version: 0,
             }
         };
         const node = <MemoryRouter initialEntries={['/article/new']}>
@@ -86,12 +93,18 @@ describe('ArticleForm', () => {
             id: 'id',
             title: 'title',
             content: 'content',
+            creationTime: 0,
+            version: 0,
+            author: {
+                username: "username",
+                version: 0,
+            }
         }
         api.getArticleById = jest.fn(({id}: GetArticleByIdRequest) => {
             return of(article);
         });
         let formSubmitted = false;
-        api.updateArticle = jest.fn(({article}: UpdateArticleRequest) => {
+        api.updateArticle = jest.fn(({articleFormData}: UpdateArticleRequest) => {
             formSubmitted = true;
             return of(undefined);
         })
@@ -101,6 +114,7 @@ describe('ArticleForm', () => {
             user: {
                 password: "",
                 username: "",
+                version: 0,
             }
         };
         act(() => {
@@ -141,6 +155,12 @@ describe('ArticleForm', () => {
             id: 'id',
             title: 'title',
             content: 'content',
+            creationTime: 0,
+            version: 0,
+            author: {
+                username: 'username',
+                version: 0,
+            }
         }
         api.getArticleById = jest.fn(({id}: GetArticleByIdRequest) => {
             return of(article);

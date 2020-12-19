@@ -12,7 +12,7 @@
  */
 
 import {
-    Role,
+    Authorization,
 } from './';
 
 /**
@@ -46,8 +46,8 @@ export interface User {
      */
     version: number;
     /**
-     * @type {Array<Role>}
+     * @type {Array<Authorization>}
      * @memberof User
      */
-    roles?: Array<Role>;
+    authorizations?: Array<Authorization>;
 }

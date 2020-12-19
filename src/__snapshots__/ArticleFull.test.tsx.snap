@@ -8,7 +8,6 @@ exports[`ArticleFull renders the article when it exists and user is logged in 1`
 "<article class=\\"ArticleFull\\">
   <h2 class=\\"TitleLevel2 ArticleFull__title\\">title</h2>
   <div class=\\"ArticleFull__author_name\\">by username</div>
-  <div class=\\"ArticleFull__editionLink\\"><a class=\\"AppLink AppLink--blue\\" href=\\"/article/undefined/edit\\">Edit</a></div>
   <div class=\\"ArticleFull__content\\">content</div>
 </article>"
 `;

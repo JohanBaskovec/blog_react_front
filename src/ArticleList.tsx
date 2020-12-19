@@ -5,6 +5,7 @@ import {ArticleSummary} from "./ArticleSummary";
 import "./ArticleList.scss";
 import {AppLink} from "./AppLink";
 import {SessionContext} from "./SessionContext";
+import {UserService} from "./UserService";
 
 export interface ArticleListProps {
     api: DefaultApi;
@@ -48,7 +49,7 @@ export function ArticleList({api}: ArticleListProps) {
     }
     return (
         <div className="ArticleList">
-            {session.user ?
+            {UserService.userHasRole('admin', session.user) ?
                 <div>
                     <AppLink to="/article/new">New article</AppLink>
                 </div> :

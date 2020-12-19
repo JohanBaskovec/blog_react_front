@@ -34,8 +34,10 @@ describe('ArticleFull', () => {
                 id: id,
                 title: 'title',
                 content: 'content',
+                creationTime: 0,
                 author: {
                     username: 'username',
+                    version: 0,
                 },
                 version: 0,
             }
@@ -45,6 +47,7 @@ describe('ArticleFull', () => {
             user: {
                 password: "",
                 username: "",
+                version: 0,
             }
         };
         act(() => {
@@ -65,8 +68,10 @@ describe('ArticleFull', () => {
                 id: id,
                 title: 'title',
                 content: 'content',
+                creationTime: 0,
                 author: {
                     username: 'username',
+                    version: 0,
                 },
                 version: 0,
             }

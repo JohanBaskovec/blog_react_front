@@ -7,6 +7,7 @@ import {TitleLevel2} from "./TitleLevel2";
 import {AppLink} from "./AppLink";
 import {SessionContext} from "./SessionContext";
 import "./ArticleFull.scss";
+import {UserService} from "./UserService";
 
 export interface ArticleFullProps {
     api: DefaultApi;
@@ -51,7 +52,7 @@ export function ArticleFull({api}: ArticleFullProps) {
             <div className="ArticleFull__author_name">
                 by {article?.author.username}
             </div>
-            {session.user ?
+            {UserService.userHasRole('admin', session.user) ?
                 <div className="ArticleFull__editionLink">
                     <AppLink to={'/article/' + article?.id + '/edit'}>Edit</AppLink>
                 </div>

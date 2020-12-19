@@ -11,33 +11,19 @@
  * Do not edit the class manually.
  */
 
-import {
-    Role,
-} from './';
-
 /**
  * @export
- * @interface UserAllOf
+ * @interface LeAuthorization
  */
-export interface UserAllOf {
+export interface LeAuthorization {
     /**
      * @type {string}
-     * @memberof UserAllOf
+     * @memberof LeAuthorization
      */
-    username: string;
+    role: string;
     /**
      * @type {string}
-     * @memberof UserAllOf
+     * @memberof LeAuthorization
      */
-    password?: string | null;
-    /**
-     * @type {number}
-     * @memberof UserAllOf
-     */
-    version: number;
-    /**
-     * @type {Array<Role>}
-     * @memberof UserAllOf
-     */
-    roles?: Array<Role>;
+    type: string;
 }
