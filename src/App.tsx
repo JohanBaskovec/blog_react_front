@@ -16,6 +16,7 @@ import {Configuration} from "./openapi";
 import {ServiceUnavailablePage} from "./ServiceUnavailablePage";
 import {Footer} from "./Footer";
 import {RegistrationPage} from "./RegistrationPage";
+import {ProfilePage} from "./ProfilePage";
 
 export interface AppProps {
     api?: DefaultApi;
@@ -98,6 +99,9 @@ function App(props: AppProps) {
                                 </Route>
                                 <Route path="/article/:id">
                                     <ArticleFull api={api}/>
+                                </Route>
+                                <Route path="/profile">
+                                    <ProfilePage api={api} />
                                 </Route>
                                 <Route path="/login">
                                     <LoginPage api={api} setSession={setSession}/>
