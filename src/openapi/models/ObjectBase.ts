@@ -11,43 +11,24 @@
  * Do not edit the class manually.
  */
 
-import {
-    Role,
-} from './';
-
 /**
  * @export
- * @interface User
+ * @interface ObjectBase
  */
-export interface User {
+export interface ObjectBase {
     /**
      * @type {string}
-     * @memberof User
+     * @memberof ObjectBase
      */
-    username: string;
+    id: string;
     /**
      * @type {number}
-     * @memberof User
+     * @memberof ObjectBase
      */
     lastModificationTime?: number;
     /**
      * @type {number}
-     * @memberof User
+     * @memberof ObjectBase
      */
-    creationTime?: number;
-    /**
-     * @type {string}
-     * @memberof User
-     */
-    password?: string | null;
-    /**
-     * @type {number}
-     * @memberof User
-     */
-    version: number;
-    /**
-     * @type {Array<Role>}
-     * @memberof User
-     */
-    roles?: Array<Role>;
+    creationTime: number;
 }

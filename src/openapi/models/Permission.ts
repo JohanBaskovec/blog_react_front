@@ -12,13 +12,11 @@
  */
 
 import {
-    ArticleAllOf,
     ObjectBase,
-    User,
 } from './';
 
 /**
- * @type Article
+ * @type Permission
  * @export
  */
-export type Article = ArticleAllOf & ObjectBase;
+export type Permission = ObjectBase;

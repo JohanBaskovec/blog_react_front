@@ -12,42 +12,32 @@
  */
 
 import {
-    Role,
+    User,
 } from './';
 
 /**
  * @export
- * @interface User
+ * @interface ArticleAllOf
  */
-export interface User {
+export interface ArticleAllOf {
     /**
      * @type {string}
-     * @memberof User
+     * @memberof ArticleAllOf
      */
-    username: string;
-    /**
-     * @type {number}
-     * @memberof User
-     */
-    lastModificationTime?: number;
-    /**
-     * @type {number}
-     * @memberof User
-     */
-    creationTime?: number;
+    title: string;
     /**
      * @type {string}
-     * @memberof User
+     * @memberof ArticleAllOf
      */
-    password?: string | null;
+    content: string;
+    /**
+     * @type {User}
+     * @memberof ArticleAllOf
+     */
+    author: User;
     /**
      * @type {number}
-     * @memberof User
+     * @memberof ArticleAllOf
      */
     version: number;
-    /**
-     * @type {Array<Role>}
-     * @memberof User
-     */
-    roles?: Array<Role>;
 }

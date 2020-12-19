@@ -17,37 +17,27 @@ import {
 
 /**
  * @export
- * @interface User
+ * @interface UserAllOf
  */
-export interface User {
+export interface UserAllOf {
     /**
      * @type {string}
-     * @memberof User
+     * @memberof UserAllOf
      */
     username: string;
     /**
-     * @type {number}
-     * @memberof User
-     */
-    lastModificationTime?: number;
-    /**
-     * @type {number}
-     * @memberof User
-     */
-    creationTime?: number;
-    /**
      * @type {string}
-     * @memberof User
+     * @memberof UserAllOf
      */
     password?: string | null;
     /**
      * @type {number}
-     * @memberof User
+     * @memberof UserAllOf
      */
     version: number;
     /**
      * @type {Array<Role>}
-     * @memberof User
+     * @memberof UserAllOf
      */
     roles?: Array<Role>;
 }

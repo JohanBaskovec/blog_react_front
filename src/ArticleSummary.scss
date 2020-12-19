@@ -12,10 +12,21 @@
 
   &__author {
     color: $grey3;
-    margin-bottom: 1rem;
   }
 
   &__title {
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
+  }
+
+  &__publication_time {
+    color: $grey3;
+  }
+
+  &__last_modification_time {
+    color: $grey3;
+  }
+
+  &__content {
+    margin-top: 1rem;
   }
 }

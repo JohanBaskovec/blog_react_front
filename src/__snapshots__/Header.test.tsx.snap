@@ -40,6 +40,17 @@ exports[`Header is rendered properly 1`] = `
       >
         <a
           className="AppLink AppLink--white"
+          href="/register"
+          onClick={[Function]}
+        >
+          Register
+        </a>
+      </li>
+      <li
+        className="Header__navListElement"
+      >
+        <a
+          className="AppLink AppLink--white"
           href="/login"
           onClick={[Function]}
         >

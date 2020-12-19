@@ -11,24 +11,13 @@
  * Do not edit the class manually.
  */
 
+import {
+    ObjectBase,
+    Permission,
+} from './';
+
 /**
+ * @type Role
  * @export
- * @interface ArticleCreationRequest
  */
-export interface ArticleCreationRequest {
-    /**
-     * @type {string}
-     * @memberof ArticleCreationRequest
-     */
-    id: string;
-    /**
-     * @type {string}
-     * @memberof ArticleCreationRequest
-     */
-    title: string;
-    /**
-     * @type {string}
-     * @memberof ArticleCreationRequest
-     */
-    content: string;
-}
+export type Role = ObjectBase;

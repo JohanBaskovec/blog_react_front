@@ -43,8 +43,8 @@ export function ArticleList({api}: ArticleListProps) {
         body = <>An error happened: {errorResponse}</>;
     } else {
         body = articles.map((article) => <ArticleSummary key={article.id}
-                                                       article={article}
-                                                       style={articleSummaryStyle}/>);
+                                                         article={article}
+                                                         style={articleSummaryStyle}/>);
     }
     return (
         <div className="ArticleList">
