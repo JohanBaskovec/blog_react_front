@@ -23,7 +23,7 @@ export function Header(props: HeaderProps) {
                 {session.user ?
                     (<>
                             <li className="Header__navListElement">
-                                <HeaderLink to="/profile">{session.user.username}</HeaderLink>
+                                <HeaderLink to="/me">{session.user.username}</HeaderLink>
                             </li>
                             <li className="Header__navListElement">
                                 <HeaderLink onClick={props.logout}>Logout</HeaderLink>

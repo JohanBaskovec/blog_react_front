@@ -100,7 +100,10 @@ function App(props: AppProps) {
                                 <Route path="/article/:id">
                                     <ArticleFull api={api}/>
                                 </Route>
-                                <Route path="/profile">
+                                <Route path="/profile/:username">
+                                    <ProfilePage api={api} />
+                                </Route>
+                                <Route path="/me">
                                     <ProfilePage api={api} />
                                 </Route>
                                 <Route path="/login">

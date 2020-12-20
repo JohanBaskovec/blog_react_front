@@ -25,6 +25,10 @@ export interface GetArticleByIdRequest {
     id: string;
 }
 
+export interface GetUserByUsernameRequest {
+    username: string;
+}
+
 export interface InsertArticleRequest {
     articleFormData: ArticleFormData;
 }
@@ -79,6 +83,18 @@ export class DefaultApi extends BaseAPI {
             path: '/me',
             method: 'GET',
             headers,
+        });
+    };
+
+    /**
+     * Get an user
+     */
+    getUserByUsername = ({ username }: GetUserByUsernameRequest): Observable<User> => {
+        throwIfNullOrUndefined(username, 'getUserByUsername');
+
+        return this.request<User>({
+            path: '/user/{username}'.replace('{username}', encodeURI(username)),
+            method: 'GET',
         });
     };
 

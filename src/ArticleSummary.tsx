@@ -30,7 +30,7 @@ export function ArticleSummary(props: ArticleSummaryProps) {
                 </div>
                 {lastModificationTimeDiv}
                 <div className="ArticleSummary__author">
-                    by {article.author.username}
+                    by <AppLink to={'/profile/' + article.author.username}>{article.author.username}</AppLink>
                 </div>
                 <div className="ArticleSummary__content">
                     {props.article.content}
