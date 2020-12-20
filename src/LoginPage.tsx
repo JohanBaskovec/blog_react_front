@@ -8,6 +8,7 @@ import {Form} from "./form/Form";
 import {InputFormGroup} from "./form/InputFormGroup";
 import {FormButtonsContainer} from "./form/FormButtonsContainer";
 import {FormButton} from "./form/FormButton";
+import SockJS from "sockjs-client";
 
 interface LoginPageProps {
     api: DefaultApi;
@@ -28,7 +29,11 @@ export function LoginPage(props: LoginPageProps) {
                     })}
                     onSubmit={(loginForm: LoginForm, {setSubmitting}: FormikHelpers<LoginForm>) => {
                         props.api.login({loginForm}).subscribe((user: User) => {
-                                props.setSession({user});
+                                const session = {
+                                    user,
+                                };
+
+                                props.setSession(session);
                             }, () => {
 
                             },

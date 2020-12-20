@@ -4,20 +4,20 @@ exports[`ArticleList renders the article list when there are 3 articles and user
 "<div class=\\"ArticleList\\">
   <div class=\\"ArticleSummary\\" style=\\"margin: 1rem 0px;\\">
     <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id0\\">title0</a></div>
-    <div class=\\"ArticleSummary__publication_time\\">Published on Dec 19, 2020, 5:48 AM</div>
-    <div class=\\"ArticleSummary__author\\">by username</div>
+    <div class=\\"ArticleSummary__publication_time\\">Published on Dec 20, 2020, 9:07 PM</div>
+    <div class=\\"ArticleSummary__author\\">by <a class=\\"AppLink AppLink--blue\\" href=\\"/profile/username\\">username</a></div>
     <div class=\\"ArticleSummary__content\\">content0</div>
   </div>
   <div class=\\"ArticleSummary\\" style=\\"margin: 1rem 0px;\\">
     <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id1\\">title1</a></div>
-    <div class=\\"ArticleSummary__publication_time\\">Published on Dec 19, 2020, 5:48 AM</div>
-    <div class=\\"ArticleSummary__author\\">by username</div>
+    <div class=\\"ArticleSummary__publication_time\\">Published on Dec 20, 2020, 9:07 PM</div>
+    <div class=\\"ArticleSummary__author\\">by <a class=\\"AppLink AppLink--blue\\" href=\\"/profile/username\\">username</a></div>
     <div class=\\"ArticleSummary__content\\">content1</div>
   </div>
   <div class=\\"ArticleSummary\\" style=\\"margin: 1rem 0px;\\">
     <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id2\\">title2</a></div>
-    <div class=\\"ArticleSummary__publication_time\\">Published on Dec 19, 2020, 5:48 AM</div>
-    <div class=\\"ArticleSummary__author\\">by username</div>
+    <div class=\\"ArticleSummary__publication_time\\">Published on Dec 20, 2020, 9:07 PM</div>
+    <div class=\\"ArticleSummary__author\\">by <a class=\\"AppLink AppLink--blue\\" href=\\"/profile/username\\">username</a></div>
     <div class=\\"ArticleSummary__content\\">content2</div>
   </div>
 </div>"
@@ -27,20 +27,20 @@ exports[`ArticleList renders the article list when there are 3 articles and user
 "<div class=\\"ArticleList\\">
   <div class=\\"ArticleSummary\\" style=\\"margin: 1rem 0px;\\">
     <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id0\\">title0</a></div>
-    <div class=\\"ArticleSummary__publication_time\\">Published on Dec 19, 2020, 5:48 AM</div>
-    <div class=\\"ArticleSummary__author\\">by username</div>
+    <div class=\\"ArticleSummary__publication_time\\">Published on Dec 20, 2020, 9:07 PM</div>
+    <div class=\\"ArticleSummary__author\\">by <a class=\\"AppLink AppLink--blue\\" href=\\"/profile/username\\">username</a></div>
     <div class=\\"ArticleSummary__content\\">content0</div>
   </div>
   <div class=\\"ArticleSummary\\" style=\\"margin: 1rem 0px;\\">
     <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id1\\">title1</a></div>
-    <div class=\\"ArticleSummary__publication_time\\">Published on Dec 19, 2020, 5:48 AM</div>
-    <div class=\\"ArticleSummary__author\\">by username</div>
+    <div class=\\"ArticleSummary__publication_time\\">Published on Dec 20, 2020, 9:07 PM</div>
+    <div class=\\"ArticleSummary__author\\">by <a class=\\"AppLink AppLink--blue\\" href=\\"/profile/username\\">username</a></div>
     <div class=\\"ArticleSummary__content\\">content1</div>
   </div>
   <div class=\\"ArticleSummary\\" style=\\"margin: 1rem 0px;\\">
     <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue\\" href=\\"/article/id2\\">title2</a></div>
-    <div class=\\"ArticleSummary__publication_time\\">Published on Dec 19, 2020, 5:48 AM</div>
-    <div class=\\"ArticleSummary__author\\">by username</div>
+    <div class=\\"ArticleSummary__publication_time\\">Published on Dec 20, 2020, 9:07 PM</div>
+    <div class=\\"ArticleSummary__author\\">by <a class=\\"AppLink AppLink--blue\\" href=\\"/profile/username\\">username</a></div>
     <div class=\\"ArticleSummary__content\\">content2</div>
   </div>
 </div>"

@@ -16,3 +16,8 @@ export * from './RoleAuthorizationAllOf';
 export * from './ServerError';
 export * from './User';
 export * from './ValidationError';
+export * from './WebSocketClientChatMessage';
+export * from './WebSocketClientChatMessageAllOf';
+export * from './WebSocketMessage';
+export * from './WebSocketServerChatMessage';
+export * from './WebSocketServerChatMessageAllOf';

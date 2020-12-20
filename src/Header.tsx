@@ -18,6 +18,12 @@ export function Header(props: HeaderProps) {
                 <li className="Header__navListElement">
                     <HeaderLink to="/">Home</HeaderLink>
                 </li>
+                {session.user ?
+                    <li className="Header__navListElement">
+                        <HeaderLink to="/chat">Chat</HeaderLink>
+                    </li>
+                    : null
+                }
             </ul>
             <ul className="Header__right-nav-list">
                 {session.user ?

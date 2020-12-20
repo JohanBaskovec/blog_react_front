@@ -17,6 +17,8 @@ import {ServiceUnavailablePage} from "./ServiceUnavailablePage";
 import {Footer} from "./Footer";
 import {RegistrationPage} from "./RegistrationPage";
 import {ProfilePage} from "./ProfilePage";
+import SockJS from "sockjs-client";
+import {ChatPage} from "./Chat";
 
 export interface AppProps {
     api?: DefaultApi;
@@ -58,6 +60,21 @@ function App(props: AppProps) {
                             setServiceUnavailable(true);
                             break;
                         case 401:
+/*
+                            api.login({loginForm: {username: 'popo', password: 'popo'}})
+                                .subscribe((user: User) => {
+                                        const session = {
+                                            user,
+                                        };
+                                        setLoading(false);
+                                        setSession(session);
+                                    }, () => {
+                                        setLoading(false);
+
+                                    },
+                                    () => {
+                                    });
+*/
                             setSession({});
                             break;
                         default:
@@ -76,6 +93,25 @@ function App(props: AppProps) {
 
     if (loading) {
         return (<div>Loading user...</div>);
+    }
+    if (session.user != null && session.webSocket == null) {
+        const socket: WebSocket = new SockJS('http://localhost:8081/websocket');
+        socket.onopen = () => {
+            console.log('WebSocket open.');
+        };
+        socket.onmessage = (e) => {
+            console.log('WebSocket message.');
+            console.log(e);
+        };
+        socket.onclose = (e) => {
+            console.log('Websocket close')
+            console.log(e);
+        };
+        socket.onerror = (e) => {
+            console.log('Websocket error')
+            console.log(e);
+        };
+        session.webSocket = socket;
     }
 
     const headerHeight = 3;
@@ -101,10 +137,13 @@ function App(props: AppProps) {
                                     <ArticleFull api={api}/>
                                 </Route>
                                 <Route path="/profile/:username">
-                                    <ProfilePage api={api} />
+                                    <ProfilePage api={api}/>
+                                </Route>
+                                <Route path="/chat">
+                                    <ChatPage api={api}/>
                                 </Route>
                                 <Route path="/me">
-                                    <ProfilePage api={api} />
+                                    <ProfilePage api={api}/>
                                 </Route>
                                 <Route path="/login">
                                     <LoginPage api={api} setSession={setSession}/>
