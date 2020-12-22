@@ -5,7 +5,7 @@ import {mockDefaultApi} from "./mockClass";
 import {render, unmountComponentAtNode} from "react-dom";
 import {act} from "react-dom/test-utils";
 import pretty from "pretty";
-import {ArticleList} from "./ArticleList";
+import {ArticleListPage} from "./ArticleListPage";
 import {Article} from "./openapi/models";
 import {MemoryRouter} from "react-router-dom";
 import {Session, SessionContext} from "./SessionContext";
@@ -33,7 +33,7 @@ describe('ArticleList', () => {
             render(
                 <MemoryRouter initialEntries={['/']}>
                     <SessionContext.Provider value={session}>
-                        <ArticleList api={api}/>
+                        <ArticleListPage api={api}/>
                     </SessionContext.Provider>
                 </MemoryRouter>
                 , container);
@@ -46,7 +46,7 @@ describe('ArticleList', () => {
         act(() => {
             render(
                 <MemoryRouter initialEntries={['/']}>
-                    <ArticleList api={api}/>
+                    <ArticleListPage api={api}/>
                 </MemoryRouter>
                 , container);
         });

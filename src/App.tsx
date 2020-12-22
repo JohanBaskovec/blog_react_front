@@ -3,7 +3,7 @@ import './App.scss';
 import './MainPageContent.scss';
 import {DefaultApi} from "./openapi/apis";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import {ArticleList} from "./ArticleList";
+import {ArticleListPage} from "./ArticleListPage";
 import {ArticleFull} from "./ArticleFull";
 import {Header} from "./Header";
 import {RandomService} from "./RandomService";
@@ -152,7 +152,7 @@ function App(props: AppProps) {
                                     <RegistrationPage api={api}/>
                                 </Route>
                                 <Route path="/">
-                                    <ArticleList api={api}/>
+                                    <ArticleListPage api={api}/>
                                 </Route>
                             </Switch>
                         }

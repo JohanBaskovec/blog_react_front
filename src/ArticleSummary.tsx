@@ -6,7 +6,6 @@ import {DateTime} from "luxon";
 
 export interface ArticleSummaryProps {
     article: Article;
-    style: React.CSSProperties;
 }
 
 export function ArticleSummary(props: ArticleSummaryProps) {
@@ -21,7 +20,7 @@ export function ArticleSummary(props: ArticleSummaryProps) {
             </div>;
     }
     return (
-        <div className="ArticleSummary" style={props.style}>
+        <div className="ArticleSummary">
                 <div className="ArticleSummary__title">
                     <AppLink to={'/article/' + article.id}>{article.title}</AppLink>
                 </div>

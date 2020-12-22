@@ -21,6 +21,10 @@ import {
     User,
 } from '../models';
 
+export interface GetAllArticlesOfUserRequest {
+    username: string;
+}
+
 export interface GetArticleByIdRequest {
     id: string;
 }
@@ -56,6 +60,18 @@ export class DefaultApi extends BaseAPI {
     getAllArticles = (): Observable<Array<Article>> => {
         return this.request<Array<Article>>({
             path: '/article',
+            method: 'GET',
+        });
+    };
+
+    /**
+     * Get an user\'s article
+     */
+    getAllArticlesOfUser = ({ username }: GetAllArticlesOfUserRequest): Observable<Array<Article>> => {
+        throwIfNullOrUndefined(username, 'getAllArticlesOfUser');
+
+        return this.request<Array<Article>>({
+            path: '/user/{username}/articles'.replace('{username}', encodeURI(username)),
             method: 'GET',
         });
     };

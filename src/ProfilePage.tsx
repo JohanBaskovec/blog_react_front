@@ -1,9 +1,10 @@
 import {useContext, useEffect, useState} from "react";
 import {SessionContext} from "./SessionContext";
 import {Redirect, useParams} from "react-router-dom";
-import {DefaultApi, PermissionAuthorization, RoleAuthorization, User} from "./openapi";
+import {Article, DefaultApi, PermissionAuthorization, RoleAuthorization, User} from "./openapi";
 import "./ProfilePage.scss";
 import {ApiError} from "./ApiError";
+import {ArticleList} from "./ArticleList";
 
 export interface ProfilePageProps {
     api: DefaultApi;
@@ -20,17 +21,27 @@ export function ProfilePage(props: ProfilePageProps) {
     const [unauthorized, setUnauthorized] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<ApiError | null>(null);
+    const [articles, setArticles] = useState<Article[]>([]);
     useEffect(() => {
+        const loadArticles = (user: User) => {
+            props.api.getAllArticlesOfUser({username: user.username})
+                .subscribe((articles: Article[]) => {
+                    setArticles(articles.map(a => ({...a, author: user})));
+                });
+        }
         if (params.username == null && user == null) {
             if (session.user == null) {
                 setUnauthorized(true);
+                return;
             }
             setUser(session.user);
+            loadArticles(session.user);
         } else {
             setLoading(true);
             props.api.getUserByUsername({username: params.username}).subscribe((user) => {
                     setLoading(false);
                     setUser(user);
+                    loadArticles(user);
                 },
                 (err) => {
                     setLoading(false);
@@ -70,6 +81,7 @@ export function ProfilePage(props: ProfilePageProps) {
     let roleLabel = isOwnProfile ? 'Your roles' : 'Role';
 
     return <div className="ProfilePage">
+        <h2>{user.username}'s profile</h2>
         <div className="ProfilePage__row">
             <div className="ProfilePage__label">{usernameLabel}:</div>
             <div className="ProfilePage__value">{user.username}</div>
@@ -84,5 +96,9 @@ export function ProfilePage(props: ProfilePageProps) {
             <div className="ProfilePage__value">{permissionsString}</div>
         </div>
 */}
+        <div className="ProfilePage__Article">
+            <h3>{user.username}'s articles:</h3>
+            <ArticleList articles={articles}/>
+        </div>
     </div>;
 }
