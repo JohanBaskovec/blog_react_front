@@ -31,8 +31,8 @@ export function ArticleSummary(props: ArticleSummaryProps) {
                 <div className="ArticleSummary__author">
                     by <AppLink to={'/profile/' + article.author.username}>{article.author.username}</AppLink>
                 </div>
-                <div className="ArticleSummary__content">
-                    {props.article.content}
+                <div className="ArticleSummary__content"
+                     dangerouslySetInnerHTML={{__html: props.article.content}}>
                 </div>
         </div>);
 }

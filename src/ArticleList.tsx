@@ -7,7 +7,7 @@ interface ArticleListProps {
 }
 
 export function ArticleList(props: ArticleListProps) {
-    return <div className="ArticleListPage">{
+    return <div className="ArticleList">{
         props.articles.map((article) => <ArticleSummary key={article.id}
                                                         article={article}/>)
     }

@@ -44,22 +44,21 @@ export function ArticleFull({api}: ArticleFullProps) {
         } else {
             body = <>An error happened, please try again later.</>
         }
-    } else {
+    } else if (article != null) {
         body = <>
             <TitleLevel2 className="ArticleFull__title">
-                {article?.title}
+                {article.title}
             </TitleLevel2>
             <div className="ArticleFull__author_name">
-                by {article?.author.username}
+                by {article.author.username}
             </div>
             {UserService.userHasRole('admin', session.user) ?
                 <div className="ArticleFull__editionLink">
-                    <AppLink to={'/article/' + article?.id + '/edit'}>Edit</AppLink>
+                    <AppLink to={'/article/' + article.id + '/edit'}>Edit</AppLink>
                 </div>
                 : null
             }
-            <div className="ArticleFull__content">
-                {article?.content}
+            <div className="ArticleFull__content" dangerouslySetInnerHTML={{__html: article.content}}>
             </div>
         </>;
     }
