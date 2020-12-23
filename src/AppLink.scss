@@ -3,24 +3,19 @@
   text-decoration: none;
   cursor: pointer;
 }
-
-$red: D00000;
-$prussianBlue: #1C3144;
-$selectiveYellow: #FFBA08;
-$cadetBlueCrayola: #A2AEBB;
-$greenBueCrayola: #3F88C8;
+@import "./variables";
 
 .AppLink--blue {
-  $color: $greenBueCrayola;
+  $color: $blue2;
   color: $color;
   &:visited {
     color: $color;
   }
   &:hover {
-    color: $selectiveYellow;
+    color: $yellow;
   }
   &:focus {
-    color: $selectiveYellow;
+    color: $yellow;
     outline: 1px dotted $color;
   }
 }
@@ -32,11 +27,11 @@ $greenBueCrayola: #3F88C8;
     color: $color;
   }
   &:hover {
-    color: $selectiveYellow;
+    color: $yellow;
   }
 
   &:focus {
-    color: $selectiveYellow;
+    color: $yellow;
     outline: 1px dotted white;
   }
 }

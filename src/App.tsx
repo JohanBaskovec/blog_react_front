@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {Suspense, useEffect, useState} from 'react';
 import './App.scss';
 import './MainPageContent.scss';
 import {DefaultApi} from "./openapi/apis";
@@ -60,21 +60,21 @@ function App(props: AppProps) {
                             setServiceUnavailable(true);
                             break;
                         case 401:
-/*
-                            api.login({loginForm: {username: 'popo', password: 'popo'}})
-                                .subscribe((user: User) => {
-                                        const session = {
-                                            user,
-                                        };
-                                        setLoading(false);
-                                        setSession(session);
-                                    }, () => {
-                                        setLoading(false);
+                            /*
+                                                        api.login({loginForm: {username: 'popo', password: 'popo'}})
+                                                            .subscribe((user: User) => {
+                                                                    const session = {
+                                                                        user,
+                                                                    };
+                                                                    setLoading(false);
+                                                                    setSession(session);
+                                                                }, () => {
+                                                                    setLoading(false);
 
-                                    },
-                                    () => {
-                                    });
-*/
+                                                                },
+                                                                () => {
+                                                                });
+                            */
                             setSession({});
                             break;
                         default:
@@ -118,50 +118,52 @@ function App(props: AppProps) {
     const mainPageContentBasis = "70%";
     // noinspection CheckTagEmptyBody
     return (
-        <SessionContext.Provider value={session}>
-            <Router>
-                <div className="App">
-                    <Header logout={logout}
-                            contentWidth={mainPageContentBasis}></Header>
-                    <main className="App__content">
-                        {serviceUnavailable ?
-                            <ServiceUnavailablePage/> :
-                            <Switch>
-                                <Route path="/article/:id/edit">
-                                    <ArticleFormRouterWrapper api={api} randomService={randomService}/>
-                                </Route>
-                                <Route path="/article/new">
-                                    <ArticleFormRouterWrapper api={api} randomService={randomService}/>
-                                </Route>
-                                <Route path="/article/:id">
-                                    <ArticleFull api={api}/>
-                                </Route>
-                                <Route path="/profile/:username">
-                                    <ProfilePage api={api}/>
-                                </Route>
-                                <Route path="/chat">
-                                    <ChatPage api={api}/>
-                                </Route>
-                                <Route path="/me">
-                                    <ProfilePage api={api}/>
-                                </Route>
-                                <Route path="/login">
-                                    <LoginPage api={api} setSession={setSession}/>
-                                </Route>
-                                <Route path="/register">
-                                    <RegistrationPage api={api}/>
-                                </Route>
-                                <Route path="/">
-                                    <ArticleListPage api={api}/>
-                                </Route>
-                            </Switch>
-                        }
-                    </main>
+        <Suspense fallback={<div>Loading application</div>}>
+            <SessionContext.Provider value={session}>
+                <Router>
+                    <div className="App">
+                        <Header logout={logout}
+                                contentWidth={mainPageContentBasis}></Header>
+                        <main className="App__content">
+                            {serviceUnavailable ?
+                                <ServiceUnavailablePage/> :
+                                <Switch>
+                                    <Route path="/article/:id/edit">
+                                        <ArticleFormRouterWrapper api={api} randomService={randomService}/>
+                                    </Route>
+                                    <Route path="/article/new">
+                                        <ArticleFormRouterWrapper api={api} randomService={randomService}/>
+                                    </Route>
+                                    <Route path="/article/:id">
+                                        <ArticleFull api={api}/>
+                                    </Route>
+                                    <Route path="/profile/:username">
+                                        <ProfilePage api={api}/>
+                                    </Route>
+                                    <Route path="/chat">
+                                        <ChatPage api={api}/>
+                                    </Route>
+                                    <Route path="/me">
+                                        <ProfilePage api={api}/>
+                                    </Route>
+                                    <Route path="/login">
+                                        <LoginPage api={api} setSession={setSession}/>
+                                    </Route>
+                                    <Route path="/register">
+                                        <RegistrationPage api={api}/>
+                                    </Route>
+                                    <Route path="/">
+                                        <ArticleListPage api={api}/>
+                                    </Route>
+                                </Switch>
+                            }
+                        </main>
 
-                    <Footer></Footer>
-                </div>
-            </Router>
-        </SessionContext.Provider>
+                        <Footer></Footer>
+                    </div>
+                </Router>
+            </SessionContext.Provider>
+        </Suspense>
     );
 }
 

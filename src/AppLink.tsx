@@ -9,17 +9,18 @@ interface LinkProps {
     children?: React.ReactNode;
     color?: AppLinkColor;
     onClick?: () => void;
+    className?: string;
 }
 
 export function AppLink(props: LinkProps): JSX.Element {
     const color = props.color || "blue";
 
     if (props.to) {
-        return (<Link className={`AppLink AppLink--${color}`} to={props.to}>
+        return (<Link className={`AppLink AppLink--${color} ${props.className}`} to={props.to}>
             {props.children}
         </Link>);
     } else {
-        return (<a className={`AppLink AppLink--${color}`}
+        return (<a className={`AppLink AppLink--${color} ${props.className}`}
                    role="button"
                    tabIndex={0}
                    onClick={props.onClick}>

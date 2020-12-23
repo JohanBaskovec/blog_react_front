@@ -2,6 +2,7 @@ import "./Header.scss";
 import {HeaderLink} from "./HeaderLink";
 import {useContext} from "react";
 import {Session, SessionContext} from "./SessionContext";
+import {useTranslation} from "react-i18next";
 
 export interface HeaderProps {
     style?: React.CSSProperties;
@@ -11,6 +12,12 @@ export interface HeaderProps {
 
 export function Header(props: HeaderProps) {
     const session: Session = useContext(SessionContext);
+    const {t, i18n} = useTranslation();
+    const setLanguage = (lang: string) => {
+      window.localStorage.setItem('i18nextLng', lang);
+        i18n.changeLanguage(lang);
+    };
+
     return (<header className="Header" style={props.style}>
         <nav style={{flexBasis: props.contentWidth}}
              className="Header__nav">
@@ -26,6 +33,20 @@ export function Header(props: HeaderProps) {
                 }
             </ul>
             <ul className="Header__right-nav-list">
+                {
+                    i18n.language !== 'en-US' ?
+                        <li className="Header__navListElement">
+                            <HeaderLink onClick={() => setLanguage('en-US')}
+                                        className="Header__flagLink">🇬🇧</HeaderLink>
+                        </li> : null
+                }
+                {
+                    i18n.language !== 'fr-FR' ?
+                        <li className="Header__navListElement">
+                            <HeaderLink onClick={() => setLanguage('fr-FR')}
+                                        className="Header__flagLink">🇫🇷</HeaderLink>
+                        </li> : null
+                }
                 {session.user ?
                     (<>
                             <li className="Header__navListElement">

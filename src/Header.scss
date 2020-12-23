@@ -10,6 +10,12 @@
   align-items: center;
   background-color: $blue3;
   color: white;
+  &__nav {
+
+  }
+  &__flagLink:hover {
+    background-color: rgba(255, 186, 8, 0.6);
+  }
 }
 
 .Header__nav {
