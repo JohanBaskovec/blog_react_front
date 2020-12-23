@@ -24,7 +24,7 @@ exports[`Header is rendered properly 1`] = `
         className="Header__navListElement"
       >
         <a
-          className="AppLink AppLink--white"
+          className="AppLink AppLink--white undefined"
           href="/"
           onClick={[Function]}
         >
@@ -39,7 +39,31 @@ exports[`Header is rendered properly 1`] = `
         className="Header__navListElement"
       >
         <a
-          className="AppLink AppLink--white"
+          className="AppLink AppLink--white Header__flagLink"
+          onClick={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          🇬🇧
+        </a>
+      </li>
+      <li
+        className="Header__navListElement"
+      >
+        <a
+          className="AppLink AppLink--white Header__flagLink"
+          onClick={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          🇫🇷
+        </a>
+      </li>
+      <li
+        className="Header__navListElement"
+      >
+        <a
+          className="AppLink AppLink--white undefined"
           href="/register"
           onClick={[Function]}
         >
@@ -50,7 +74,7 @@ exports[`Header is rendered properly 1`] = `
         className="Header__navListElement"
       >
         <a
-          className="AppLink AppLink--white"
+          className="AppLink AppLink--white undefined"
           href="/login"
           onClick={[Function]}
         >
