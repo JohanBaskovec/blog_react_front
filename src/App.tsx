@@ -47,6 +47,22 @@ function App(props: AppProps) {
     });
     const [serviceUnavailable, setServiceUnavailable] = useState(false);
     const [loading, setLoading] = useState(true);
+    const autoLogin = () => {
+        api.login({loginForm: {username: 'popo', password: 'popo'}})
+            .subscribe((user: User) => {
+                    const session = {
+                        user,
+                    };
+                    setLoading(false);
+                    setSession(session);
+                }, () => {
+                    setLoading(false);
+
+                },
+                () => {
+                });
+        setSession({});
+    };
     useEffect(() => {
         assert(api != null);
         api.getCurrentAuthenticatedUser().subscribe((user: User) => {
@@ -60,22 +76,7 @@ function App(props: AppProps) {
                             setServiceUnavailable(true);
                             break;
                         case 401:
-                            /*
-                                                        api.login({loginForm: {username: 'popo', password: 'popo'}})
-                                                            .subscribe((user: User) => {
-                                                                    const session = {
-                                                                        user,
-                                                                    };
-                                                                    setLoading(false);
-                                                                    setSession(session);
-                                                                }, () => {
-                                                                    setLoading(false);
-
-                                                                },
-                                                                () => {
-                                                                });
-                            */
-                            setSession({});
+                            autoLogin();
                             break;
                         default:
                             break;
@@ -135,7 +136,7 @@ function App(props: AppProps) {
                                         <ArticleFormRouterWrapper api={api} randomService={randomService}/>
                                     </Route>
                                     <Route path="/article/:id">
-                                        <ArticleFull api={api}/>
+                                        <ArticleFull api={api} randomService={randomService}/>
                                     </Route>
                                     <Route path="/profile/:username">
                                         <ProfilePage api={api}/>

@@ -11,4 +11,13 @@
   &__title {
     margin-bottom: 0.5rem;
   }
+
+  &__comment-author {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+  &__content {
+    margin-bottom: 1rem;
+  }
 }

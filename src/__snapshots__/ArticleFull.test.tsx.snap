@@ -9,6 +9,15 @@ exports[`ArticleFull renders the article when it exists and user is logged in 1`
   <h2 class=\\"TitleLevel2 ArticleFull__title\\">title</h2>
   <div class=\\"ArticleFull__author_name\\">by username</div>
   <div class=\\"ArticleFull__content\\">content</div>
+  <div class=\\"ArticleFull__commentInputContainer\\">
+    <form action=\\"#\\" name=\\"article-form\\" class=\\"Form\\">
+      <div class=\\"TextAreaFormGroup\\"><label class=\\"Label\\" for=\\"content\\">Post a new comment</label><textarea id=\\"content\\" class=\\"TextArea\\" name=\\"content\\"></textarea></div>
+      <div class=\\"FormButtonsContainer\\"><button type=\\"submit\\" class=\\"Button \\">Submit</button></div>
+    </form>
+  </div>
+  <div class=\\"ArticleFull__comments\\">
+    <h3>Comments</h3>
+  </div>
 </article>"
 `;
 
@@ -17,5 +26,9 @@ exports[`ArticleFull renders the article when it exists and user is not logged i
   <h2 class=\\"TitleLevel2 ArticleFull__title\\">title</h2>
   <div class=\\"ArticleFull__author_name\\">by username</div>
   <div class=\\"ArticleFull__content\\">content</div>
+  <div>Login to leave a comment.</div>
+  <div class=\\"ArticleFull__comments\\">
+    <h3>Comments</h3>
+  </div>
 </article>"
 `;

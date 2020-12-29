@@ -1,7 +1,7 @@
 import React from "react";
-import {DefaultApi, GetArticleByIdRequest} from "./openapi/apis";
+import {DefaultApi, GetAllCommentsOfArticleRequest, GetArticleByIdRequest} from "./openapi/apis";
 import {of, throwError} from "rxjs";
-import {mockDefaultApi} from "./mockClass";
+import {mockClass, mockDefaultApi} from "./mockClass";
 import {render, unmountComponentAtNode} from "react-dom";
 import {act} from "react-dom/test-utils";
 import pretty from "pretty";
@@ -10,6 +10,7 @@ import {AjaxError} from "rxjs/ajax";
 import {ArticleFull} from "./ArticleFull";
 import {MemoryRouter} from "react-router-dom";
 import {Session, SessionContext} from "./SessionContext";
+import {RandomService} from "./RandomService";
 
 let container: HTMLDivElement;
 beforeEach(() => {
@@ -27,6 +28,10 @@ afterEach(() => {
 });
 
 describe('ArticleFull', () => {
+    const randomService = mockClass(RandomService);
+    randomService.generateUuid = jest.fn(() => {
+        return 'mock-uuid';
+    });
     it("renders the article when it exists and user is logged in", () => {
         const api: DefaultApi = mockDefaultApi(new DefaultApi());
         api.getArticleById = jest.fn(({id}: GetArticleByIdRequest) => {
@@ -43,6 +48,9 @@ describe('ArticleFull', () => {
             }
             return of(article);
         });
+        api.getAllCommentsOfArticle = jest.fn(({articleId: string}: GetAllCommentsOfArticleRequest) => {
+            return of([]);
+        });
         const session: Session = {
             user: {
                 password: "",
@@ -54,7 +62,7 @@ describe('ArticleFull', () => {
             render(
                 <MemoryRouter initialEntries={['/article/3']}>
                     <SessionContext.Provider value={session}>
-                        <ArticleFull api={api}/>
+                        <ArticleFull api={api} randomService={randomService}/>
                     </SessionContext.Provider>
                 </MemoryRouter>
                 , container);
@@ -77,10 +85,13 @@ describe('ArticleFull', () => {
             }
             return of(article);
         });
+        api.getAllCommentsOfArticle = jest.fn(({articleId: string}: GetAllCommentsOfArticleRequest) => {
+            return of([]);
+        });
         act(() => {
             render(
                 <MemoryRouter initialEntries={['/article/3']}>
-                    <ArticleFull api={api}/>
+                    <ArticleFull api={api} randomService={randomService}/>
                 </MemoryRouter>
                 , container);
         });
@@ -93,10 +104,13 @@ describe('ArticleFull', () => {
                 status: 404,
             } as AjaxError);
         });
+        api.getAllCommentsOfArticle = jest.fn(({articleId: string}: GetAllCommentsOfArticleRequest) => {
+            return of([]);
+        });
         act(() => {
             render(
                 <MemoryRouter initialEntries={['/article/3']}>
-                    <ArticleFull api={api}/>
+                    <ArticleFull api={api} randomService={randomService}/>
                 </MemoryRouter>
                 , container);
         });
@@ -109,10 +123,13 @@ describe('ArticleFull', () => {
                 status: 500,
             } as AjaxError);
         });
+        api.getAllCommentsOfArticle = jest.fn(({articleId: string}: GetAllCommentsOfArticleRequest) => {
+            return of([]);
+        });
         act(() => {
             render(
                 <MemoryRouter initialEntries={['/article/3']}>
-                    <ArticleFull api={api}/>
+                    <ArticleFull api={api} randomService={randomService}/>
                 </MemoryRouter>
                 , container);
         });

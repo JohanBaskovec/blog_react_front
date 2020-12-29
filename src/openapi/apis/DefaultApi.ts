@@ -15,6 +15,8 @@ import { Observable } from 'rxjs';
 import { BaseAPI, HttpHeaders, throwIfNullOrUndefined, encodeURI } from '../runtime';
 import {
     Article,
+    ArticleComment,
+    ArticleCommentCreationFormData,
     ArticleFormData,
     LoginForm,
     RegistrationForm,
@@ -23,6 +25,10 @@ import {
 
 export interface GetAllArticlesOfUserRequest {
     username: string;
+}
+
+export interface GetAllCommentsOfArticleRequest {
+    articleId: string;
 }
 
 export interface GetArticleByIdRequest {
@@ -35,6 +41,10 @@ export interface GetUserByUsernameRequest {
 
 export interface InsertArticleRequest {
     articleFormData: ArticleFormData;
+}
+
+export interface InsertArticleCommentRequest {
+    articleCommentCreationFormData: ArticleCommentCreationFormData;
 }
 
 export interface LoginRequest {
@@ -72,6 +82,18 @@ export class DefaultApi extends BaseAPI {
 
         return this.request<Array<Article>>({
             path: '/user/{username}/articles'.replace('{username}', encodeURI(username)),
+            method: 'GET',
+        });
+    };
+
+    /**
+     * Get all the comments of an article
+     */
+    getAllCommentsOfArticle = ({ articleId }: GetAllCommentsOfArticleRequest): Observable<Array<ArticleComment>> => {
+        throwIfNullOrUndefined(articleId, 'getAllCommentsOfArticle');
+
+        return this.request<Array<ArticleComment>>({
+            path: '/article/{articleId}/comments'.replace('{articleId}', encodeURI(articleId)),
             method: 'GET',
         });
     };
@@ -129,6 +151,24 @@ export class DefaultApi extends BaseAPI {
             method: 'POST',
             headers,
             body: articleFormData,
+        });
+    };
+
+    /**
+     * Create a comment
+     */
+    insertArticleComment = ({ articleCommentCreationFormData }: InsertArticleCommentRequest): Observable<void> => {
+        throwIfNullOrUndefined(articleCommentCreationFormData, 'insertArticleComment');
+
+        const headers: HttpHeaders = {
+            'Content-Type': 'application/json',
+        };
+
+        return this.request<void>({
+            path: '/article-comment',
+            method: 'POST',
+            headers,
+            body: articleCommentCreationFormData,
         });
     };
 

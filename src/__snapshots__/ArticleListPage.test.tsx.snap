@@ -5,19 +5,19 @@ exports[`ArticleList renders the article list when there are 3 articles and user
   <div class=\\"ArticleList\\">
     <div class=\\"ArticleSummary\\">
       <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue undefined\\" href=\\"/article/id0\\">title0</a></div>
-      <div class=\\"ArticleSummary__publication_time\\">publication_date Dec 23, 2020, 2:01 PM</div>
+      <div class=\\"ArticleSummary__publication_time\\">publication_date Dec 29, 2020, 9:52 PM</div>
       <div class=\\"ArticleSummary__author\\">published_by <a class=\\"AppLink AppLink--blue undefined\\" href=\\"/profile/username\\">username</a></div>
       <div class=\\"ArticleSummary__content\\">content0</div>
     </div>
     <div class=\\"ArticleSummary\\">
       <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue undefined\\" href=\\"/article/id1\\">title1</a></div>
-      <div class=\\"ArticleSummary__publication_time\\">publication_date Dec 23, 2020, 2:01 PM</div>
+      <div class=\\"ArticleSummary__publication_time\\">publication_date Dec 29, 2020, 9:52 PM</div>
       <div class=\\"ArticleSummary__author\\">published_by <a class=\\"AppLink AppLink--blue undefined\\" href=\\"/profile/username\\">username</a></div>
       <div class=\\"ArticleSummary__content\\">content1</div>
     </div>
     <div class=\\"ArticleSummary\\">
       <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue undefined\\" href=\\"/article/id2\\">title2</a></div>
-      <div class=\\"ArticleSummary__publication_time\\">publication_date Dec 23, 2020, 2:01 PM</div>
+      <div class=\\"ArticleSummary__publication_time\\">publication_date Dec 29, 2020, 9:52 PM</div>
       <div class=\\"ArticleSummary__author\\">published_by <a class=\\"AppLink AppLink--blue undefined\\" href=\\"/profile/username\\">username</a></div>
       <div class=\\"ArticleSummary__content\\">content2</div>
     </div>
@@ -30,19 +30,19 @@ exports[`ArticleList renders the article list when there are 3 articles and user
   <div class=\\"ArticleList\\">
     <div class=\\"ArticleSummary\\">
       <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue undefined\\" href=\\"/article/id0\\">title0</a></div>
-      <div class=\\"ArticleSummary__publication_time\\">publication_date Dec 23, 2020, 2:01 PM</div>
+      <div class=\\"ArticleSummary__publication_time\\">publication_date Dec 29, 2020, 9:52 PM</div>
       <div class=\\"ArticleSummary__author\\">published_by <a class=\\"AppLink AppLink--blue undefined\\" href=\\"/profile/username\\">username</a></div>
       <div class=\\"ArticleSummary__content\\">content0</div>
     </div>
     <div class=\\"ArticleSummary\\">
       <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue undefined\\" href=\\"/article/id1\\">title1</a></div>
-      <div class=\\"ArticleSummary__publication_time\\">publication_date Dec 23, 2020, 2:01 PM</div>
+      <div class=\\"ArticleSummary__publication_time\\">publication_date Dec 29, 2020, 9:52 PM</div>
       <div class=\\"ArticleSummary__author\\">published_by <a class=\\"AppLink AppLink--blue undefined\\" href=\\"/profile/username\\">username</a></div>
       <div class=\\"ArticleSummary__content\\">content1</div>
     </div>
     <div class=\\"ArticleSummary\\">
       <div class=\\"ArticleSummary__title\\"><a class=\\"AppLink AppLink--blue undefined\\" href=\\"/article/id2\\">title2</a></div>
-      <div class=\\"ArticleSummary__publication_time\\">publication_date Dec 23, 2020, 2:01 PM</div>
+      <div class=\\"ArticleSummary__publication_time\\">publication_date Dec 29, 2020, 9:52 PM</div>
       <div class=\\"ArticleSummary__author\\">published_by <a class=\\"AppLink AppLink--blue undefined\\" href=\\"/profile/username\\">username</a></div>
       <div class=\\"ArticleSummary__content\\">content2</div>
     </div>
